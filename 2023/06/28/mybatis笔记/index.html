@@ -24,7 +24,7 @@
 <meta property="og:description" content="什么是myBatismybatis是一个优秀的持久层框架，用于简化JDBC（JDBC白学） JDBC的缺点1.硬编码  注册驱动和获取链接 sql语句  2.操作繁琐  需要手动封装结果集ResultSet preparedstatement手动设置参数  mybatis免除看几乎所有的JDBC代码以及设置参数和获取结果集的工作 myBatis快速入门 创建项目  新建maven模块  在pom.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-28T07:01:20.000Z">
-<meta property="article:modified_time" content="2023-06-28T07:04:03.339Z">
+<meta property="article:modified_time" content="2023-06-28T13:50:29.507Z">
 <meta property="article:author" content="星光浮梦">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -422,7 +422,7 @@
 </ol>
 </li>
 </ul>
-<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><ul>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ul>
 <li><p>练习-查询所有数据</p>
 <ol>
 <li>编写接口方法</li>
@@ -524,7 +524,7 @@
 </ol>
 </li>
 </ul>
-<h1 id="动态条件查询（动态SQL）"><a href="#动态条件查询（动态SQL）" class="headerlink" title="动态条件查询（动态SQL）"></a>动态条件查询（动态SQL）</h1><p>  Mybatis对动态SQL有很强大的支撑：</p>
+<h2 id="动态条件查询（动态SQL）"><a href="#动态条件查询（动态SQL）" class="headerlink" title="动态条件查询（动态SQL）"></a>动态条件查询（动态SQL）</h2><p>  Mybatis对动态SQL有很强大的支撑：</p>
 <ul>
 <li><p>if</p>
 <p>多用于多条件的查询</p>
@@ -549,7 +549,7 @@
 <li><p>foreach</p>
 </li>
 </ul>
-<h1 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h1><ol>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><ol>
 <li>编写接口方法：Mapper接口<ul>
 <li>参数：除了id之外的所有数据，为了避免id主键重复</li>
 <li>结果：void（通过是否出现异常确认是否成功）</li>
@@ -561,7 +561,7 @@
 <p>如果需要自动提交事务，可以在获取sqlSession对象的时候设置参数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">SqlSession sqlSession=sqlSessionFactory.openSession(<span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
 
-<h1 id="添加-主键返回"><a href="#添加-主键返回" class="headerlink" title="添加-主键返回"></a>添加-主键返回</h1><p>意思是在数据添加成功后，需要获取插入数据库数据 的主键的值</p>
+<h2 id="添加-主键返回"><a href="#添加-主键返回" class="headerlink" title="添加-主键返回"></a>添加-主键返回</h2><p>意思是在数据添加成功后，需要获取插入数据库数据 的主键的值</p>
 <ul>
 <li>比如：添加订单和订单项</li>
 </ul>
@@ -574,7 +574,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;add&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span>&gt;</span><br>        insert into tb_brand (brand_name , company_name ,ordered,description , status)<br>        values (#&#123;brandName&#125;,#&#123;companyName&#125;,#&#123;ordered&#125;,#&#123;description&#125;,#&#123;status&#125;);<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>这样之后再运行sout(id);就会成功输出实际的id编号了</p>
-<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><p>修改全部字段</p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>修改全部字段</p>
 <ol>
 <li><p>编写Mapper接口方法</p>
 <p>参数：所有数据</p>
@@ -587,10 +587,10 @@
 </li>
 </ol>
 <p>要点与前面一致，根据业务逻辑编写SQL语句，Mapper代理运行SQL然后提交事务</p>
-<h1 id="修改动态字段"><a href="#修改动态字段" class="headerlink" title="修改动态字段"></a>修改动态字段</h1><p>动态SQL进行修改语句</p>
+<h2 id="修改动态字段"><a href="#修改动态字段" class="headerlink" title="修改动态字段"></a>修改动态字段</h2><p>动态SQL进行修改语句</p>
 <p>与动态条件查询类似，可以进行类比</p>
 <p>不再赘述</p>
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>删除一个</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>删除一个</p>
 <ol>
 <li><p>编写Mapper接口方法</p>
 <p>参数：id</p>
@@ -601,7 +601,7 @@
 <li><p>执行方法，测试</p>
 </li>
 </ol>
-<h1 id="批量删除数据"><a href="#批量删除数据" class="headerlink" title="批量删除数据"></a>批量删除数据</h1><p>因为批量删除需要的时候前端传输过来的一般多个数据，所以这时候获取的参数大概率是id数组</p>
+<h2 id="批量删除数据"><a href="#批量删除数据" class="headerlink" title="批量删除数据"></a>批量删除数据</h2><p>因为批量删除需要的时候前端传输过来的一般多个数据，所以这时候获取的参数大概率是id数组</p>
 <ol>
 <li><p>编写Mapper接口</p>
 <p>参数：id数组</p>
