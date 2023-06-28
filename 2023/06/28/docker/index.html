@@ -11,15 +11,19 @@
 
     
     <title>
-        Archives: 2023 |
+        docker |
         
         Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+    <meta name="description" content="开启hyper-v功能 1234567891011pushd &quot;%~dp0&quot;dir &#x2F;b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txtfor &#x2F;f %%i in (&amp;#x27;findstr &#x2F;i . hyper-v.txt 2^&gt;nul&amp;#x27;) do dism &#x2F;online &#x2F;nor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http://example.com/2023/06/28/docker/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="开启hyper-v功能 1234567891011pushd &quot;%~dp0&quot;dir &#x2F;b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txtfor &#x2F;f %%i in (&amp;#x27;findstr &#x2F;i . hyper-v.txt 2^&gt;nul&amp;#x27;) do dism &#x2F;online &#x2F;nor">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-28T07:07:31.000Z">
+<meta property="article:modified_time" content="2023-06-28T07:08:11.272Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -54,7 +58,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="/images/banner.jpg" data-sizes="auto" alt="" class="lazyload">
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="docker" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -62,7 +66,7 @@
                 
                     
                     
-                        <a href="/" id="logo">Archives</a>
+                        <a href="/" id="logo">docker</a>
                     
                 
             </h1>
@@ -111,164 +115,97 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main">
-    <div class="archives-outer-wrap">
-        <div class="tag-wrap">
+                <section id="main"><article id="post-docker" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date">
+    <a href="/2023/06/28/docker/" class="article-date-link">
+        <time datetime="2023-06-28T07:07:31.000Z"
+              itemprop="datePublished">2023-06-28</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <ol>
+<li><p>开启hyper-v功能</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pushd</span> &quot;%~dp0&quot;</span><br><span class="line"></span><br><span class="line"><span class="built_in">dir</span> /b <span class="variable">%SystemRoot%</span>\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> /f <span class="variable">%%i</span> <span class="keyword">in</span> (&#x27;<span class="built_in">findstr</span> /i . hyper-v.txt <span class="number">2</span>^&gt;<span class="built_in">nul</span>&#x27;) <span class="keyword">do</span> dism /online /norestart /add-package:&quot;<span class="variable">%SystemRoot%</span>\servicing\Packages\<span class="variable">%%i</span>&quot;</span><br><span class="line"></span><br><span class="line"><span class="built_in">del</span> hyper-v.txt</span><br><span class="line"></span><br><span class="line">Dism /online /enable-feature /featurename:Microsoft-Hyper-V -All /LimitAccess /ALL</span><br><span class="line"></span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CMD管理员权限运行</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexec /package https://wslstorestorage.blob.core.windows.<span class="built_in">net</span>/wslblob/wsl_update_x64.msi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>官网下载安装注册docker</p>
+</li>
+<li><p>微软商店下载Linux发行版本</p>
+<p>启动，然后设置账号密码</p>
+</li>
+<li><p>CMD查看运行状态</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>docker -v检测是否安装成功</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error during connect: this error may indicate that the docker daemon is not running: Get &quot;http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/json&quot;: open //./pipe/docker_engine: The system cannot find the file specified.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>出现如上错误，先检查程序和docker有没有启动</p>
+<p>7.进入容器！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--进入容器</span><br><span class="line">docker exec -it 容器id redis-cli</span><br></pre></td></tr></table></figure>
+
+
             
         </div>
-        <div class="category-wrap">
-            
-        </div>
-        
-        
+        <footer class="article-footer">
+            <a data-url="http://example.com/2023/06/28/docker/" data-id="cljfdn48f00018wi2hk9oebbc" data-title="docker"
+               class="article-share-link">Share</a>
             
             
-                
+            
+            
+
+        </footer>
+    </div>
     
-    <section class="archives-wrap">
-        <div class="archive-year-wrap">
-            <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-            <ul>
+        
+    <nav id="article-nav">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
                 
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/docker/">
-            <time class="dt-published" datetime="2023-06-28T07:07:31.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Springboot"
+                             class="lazyload">
+                    
+                
+                <a href="/2023/06/28/Springboot/"></a>
+                <div class="article-nav-caption">Older</div>
+                <div class="article-nav-title">
+                    
+                        Springboot
+                    
+                </div>
+            </div>
         
-            
-                <a class="archive-article-title" href="/2023/06/28/docker/">docker</a>
-            
-        
-    </div>
-</li>
+    </nav>
 
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/Springboot/">
-            <time class="dt-published" datetime="2023-06-28T07:02:15.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/06/28/Springboot/">Springboot</a>
-            
-        
-    </div>
-</li>
 
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/AJAX/">
-            <time class="dt-published" datetime="2023-06-28T07:01:39.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/06/28/AJAX/">AJAX</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/mybatis%E7%AC%94%E8%AE%B0/">
-            <time class="dt-published" datetime="2023-06-28T07:01:20.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/06/28/mybatis%E7%AC%94%E8%AE%B0/">mybatis笔记</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/javaweb/">
-            <time class="dt-published" datetime="2023-06-28T07:01:08.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/06/28/javaweb/">javaweb</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/06/28/js%E5%85%A5%E9%97%A8/">
-            <time class="dt-published" datetime="2023-06-28T07:00:37.000Z"
-                  itemprop="datePublished">06-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/06/28/js%E5%85%A5%E9%97%A8/">js入门</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/02/28/hello-world/">
-            <time class="dt-published" datetime="2023-02-28T12:05:24.636Z"
-                  itemprop="datePublished">02-28</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/02/28/hello-world/">伊苏尔德</a>
-            
-        
-    </div>
-</li>
-
-                
-                
-            </ul>
-        </div>
-    </section>
     
-    </div>
+</article>
+
+
+
+
+
+
+
+
 
 
 

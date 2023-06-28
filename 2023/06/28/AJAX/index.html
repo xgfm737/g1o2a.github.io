@@ -1,0 +1,593 @@
+
+    <!DOCTYPE html>
+    <html lang="en"
+            
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        AJAX |
+        
+        Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AJAX异步的javaScript和XML 全程：Asynchronous Javascript And xml 可以做到前后端分离 AJAX的作用 与服务器进行数据交换：通过AJAX可以给服务器发送请求，并且获取服务端响应的数据 使用了AJAX和服务器进行通信，就可以使用HTML+AJAX来替换JSP页面  异步交互：可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术 如：搜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX">
+<meta property="og:url" content="http://example.com/2023/06/28/AJAX/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AJAX异步的javaScript和XML 全程：Asynchronous Javascript And xml 可以做到前后端分离 AJAX的作用 与服务器进行数据交换：通过AJAX可以给服务器发送请求，并且获取服务端响应的数据 使用了AJAX和服务器进行通信，就可以使用HTML+AJAX来替换JSP页面  异步交互：可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术 如：搜">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-28T07:01:39.000Z">
+<meta property="article:modified_time" content="2023-06-28T07:04:49.035Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="AJAX" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo">AJAX</a>
+                    
+                
+            </h1>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">Home</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">Archives</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">About</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">Friend</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS Feed"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-AJAX" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date">
+    <a href="/2023/06/28/AJAX/" class="article-date-link">
+        <time datetime="2023-06-28T07:01:39.000Z"
+              itemprop="datePublished">2023-06-28</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><p><mark>异步</mark>的javaScript和XML</p>
+<p>全程：Asynchronous Javascript And xml</p>
+<p>可以做到前后端分离</p>
+<h6 id="AJAX的作用"><a href="#AJAX的作用" class="headerlink" title="AJAX的作用"></a>AJAX的作用</h6><ol>
+<li><p>与服务器进行数据交换：通过AJAX可以给服务器发送请求，并且获取服务端响应的数据</p>
+<p>使用了AJAX和服务器进行通信，就可以使用HTML+AJAX来替换JSP页面</p>
+</li>
+<li><p>异步交互：可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术</p>
+<p>如：搜索时的联想功能，用户名实时校验是否可用</p>
+</li>
+</ol>
+<h1 id="AJAX的快速入门"><a href="#AJAX的快速入门" class="headerlink" title="AJAX的快速入门"></a>AJAX的快速入门</h1><p>编写AjaxServlet</p>
+<p>编写ajax的html网页</p>
+<ol>
+<li><p>创建核心对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhttp;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>)&#123;</span><br><span class="line">        xhttp=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//code for IE6,IE5</span></span><br><span class="line">        xhttp=<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发送请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;URL&quot;</span>);</span><br><span class="line">    xhttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取相应</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xhttp.<span class="property">onreadystatechange</span>=<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span>==<span class="number">4</span>&amp;&amp;<span class="variable language_">this</span>.<span class="property">status</span>== <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">responseText</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h1><p>全局刷新：整个浏览器被新的数据覆盖，在网络中传输大量的数据，浏览器需要加载，渲染页面</p>
+<p>局部刷新：在浏览器的内部，发起请求，获取数据，改变页面中的部分内容，其余的页面无需加载和渲染，网络中数据传输量少，给用户的体验好</p>
+<p>ajax就是用来做局部刷新的</p>
+<p>局部刷新使用的核心对象是异步对象，使用javascript语法创建和使用XMLHttpRequest对象</p>
+<h1 id="AJAX异步对象的使用"><a href="#AJAX异步对象的使用" class="headerlink" title="AJAX异步对象的使用"></a>AJAX异步对象的使用</h1><ol>
+<li><p>创建异步对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlHttp =<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给异步对象绑定事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button.<span class="property">onclick</span> =<span class="title function_">fun1</span>(<span class="params"></span>)&#123;&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun1</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;按钮被点击了&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法是xmlhttp获取数据时候都会启动的方法</span></span><br><span class="line">xmlHttp.<span class="property">onreadystatechange</span> =<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//处理状态的变化</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="onreadystatechange事件"><a href="#onreadystatechange事件" class="headerlink" title="onreadystatechange事件"></a>onreadystatechange事件</h1><p>当异步对象发起请求，获取了数据都会触发这个事件，这个事件需要指定一个函数，在函数中处理状态的变化</p>
+<p>每当状态发生改变的时候都会调用一次这个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.onreadystatechange =function()&#123;</span><br><span class="line">    //处理状态的变化</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="readyState属性"><a href="#readyState属性" class="headerlink" title="readyState属性"></a>readyState属性</h1><p>存储XMLHttpRequest的状态，从0到4变化</p>
+<p>0：创建异步对象时，new XMLHttpRequest();</p>
+<p>1：初始异步请求对象，xmlHttp.open();</p>
+<p>2：发送请求，xmlHttp.send();</p>
+<p>3：从服务器端获取了数据，此时为3，3是异步对象的内部使用，表示获取了原始的数据</p>
+<p>4：异步对象把接收的数据处理完成后，此时开发人员在4的时候处理数据，在4的时候，更新当前页面，局部刷新数据，更新当前页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(xmlHttp.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xmlHttp。status == <span class="number">200</span>)&#123;</span><br><span class="line">    <span class="comment">//可以处理服务器端的数据，更新页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>异步对象的status属性表示网络请求的状况，200表示网络请求是成功的</p>
+<h1 id="初始异步请求对象"><a href="#初始异步请求对象" class="headerlink" title="初始异步请求对象"></a>初始异步请求对象</h1><p>异步的方法open();</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.<span class="title function_">open</span>(请求方式get|post,<span class="string">&quot;服务器端的访问地址&quot;</span>，同步(<span class="literal">false</span>)|异步(<span class="literal">true</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//例如</span></span><br><span class="line">xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;get&quot;</span>,<span class="string">&quot;loginServlet?name=zs&quot;</span>,<span class="literal">true</span>);</span><br><span class="line"><span class="comment">//异步默认为true可以省略</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="使用异步对象发送请求"><a href="#使用异步对象发送请求" class="headerlink" title="使用异步对象发送请求"></a>使用异步对象发送请求</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.<span class="title function_">send</span>()</span><br></pre></td></tr></table></figure>
+
+<p>获取服务器端返回的数据，使用异步对象的属性：responseText</p>
+<p>使用例子：xmlHttp.responseText</p>
+<h1 id="全局刷新计算BMI（案例）"><a href="#全局刷新计算BMI（案例）" class="headerlink" title="全局刷新计算BMI（案例）"></a>全局刷新计算BMI（案例）</h1><p>使用servlet和转发完成</p>
+<h1 id="局部刷新计算BMI（案例）"><a href="#局部刷新计算BMI（案例）" class="headerlink" title="局部刷新计算BMI（案例）"></a>局部刷新计算BMI（案例）</h1><ol>
+<li>新建JSP，使用XMLHttpRequest异步对象<ul>
+<li>创建</li>
+<li>绑定事件</li>
+<li>初始请求</li>
+<li>发送请求</li>
+</ul>
+</li>
+<li>创建服务器的servlet，接受并处理数据，把数据输出给异步对象</li>
+</ol>
+<p>js代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">doAjax</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">//创建异步对象</span></span><br><span class="line">            <span class="keyword">var</span> xmlHttp=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">            <span class="comment">//绑定事件</span></span><br><span class="line">            xmlHttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                <span class="comment">//处理服务器返回的数据，更新当前页面</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span>==<span class="number">4</span>&amp;&amp;<span class="variable language_">this</span>.<span class="property">status</span>== <span class="number">200</span>)&#123;</span><br><span class="line">                    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;word&quot;</span>).<span class="property">innerText</span>=<span class="variable language_">this</span>.<span class="property">responseText</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">var</span> name=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;name&quot;</span>).<span class="property">value</span>;</span><br><span class="line">            <span class="keyword">var</span> w=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;w&quot;</span>).<span class="property">value</span>;</span><br><span class="line">            <span class="keyword">var</span> h=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;h&quot;</span>).<span class="property">value</span>;</span><br><span class="line">            <span class="comment">//初始请求数据</span></span><br><span class="line">            xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;get&quot;</span>,<span class="string">&quot;http://localhost:8080//ajax/bmiAjax?name=&quot;</span>+name+<span class="string">&quot;&amp;&amp;w=&quot;</span>+w+<span class="string">&quot;&amp;&amp;h=&quot;</span>+h);</span><br><span class="line">            <span class="comment">//发送请求</span></span><br><span class="line">            xmlHttp.<span class="title function_">send</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;w&quot;</span> <span class="attr">id</span>=<span class="string">&quot;w&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;h&quot;</span> <span class="attr">id</span>=<span class="string">&quot;h&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;doAjax()&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;word&quot;</span>&gt;</span>等待数据加载<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xgfm.ajax;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet(&quot;/bmiAjax&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BmiAjaxServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        String w=request.getParameter(<span class="string">&quot;w&quot;</span>);</span><br><span class="line">        String h=request.getParameter(<span class="string">&quot;h&quot;</span>);</span><br><span class="line">        String name=request.getParameter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="type">double</span> weight=Double.valueOf(w);</span><br><span class="line">            <span class="type">double</span> high=Double.valueOf(h);</span><br><span class="line"></span><br><span class="line">            <span class="type">double</span> bmi=weight/(high*high);</span><br><span class="line">            String msg;</span><br><span class="line">            <span class="keyword">if</span> (bmi&lt;=<span class="number">18.5</span>)&#123;</span><br><span class="line">                msg=<span class="string">&quot;你他妈的是不是细狗啊&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (bmi&gt;<span class="number">18.5</span>&amp;&amp;bmi&lt;=<span class="number">23.9</span>)&#123;</span><br><span class="line">                msg=<span class="string">&quot;你他妈的好像有点正常诶&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (bmi&gt;<span class="number">24</span> &amp;&amp; bmi &lt;=<span class="number">27</span>)&#123;</span><br><span class="line">                msg=<span class="string">&quot;你他妈的一天天吃多少东西啊&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                msg=<span class="string">&quot;不是，哥们一天天的光顾着吃了是吧&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(msg);</span><br><span class="line">            msg=<span class="string">&quot;您好，您的bmi为&quot;</span>+bmi+<span class="string">&quot;这边的想法是&quot;</span>+msg;</span><br><span class="line">            request.setAttribute(<span class="string">&quot;msg&quot;</span>,msg);</span><br><span class="line">            response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line">        PrintWriter pw=response.getWriter();</span><br><span class="line">        pw.println(msg);</span><br><span class="line">        pw.close();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="根据省份id查询省份信息（案例）"><a href="#根据省份id查询省份信息（案例）" class="headerlink" title="根据省份id查询省份信息（案例）"></a>根据省份id查询省份信息（案例）</h1><p>视频中是使用jdbc+jsp实现的，我想用mybatis实现以下</p>
+<h1 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h1><p>使用ajax发送请求—-servlet返回一个json数据格式的字符串</p>
+<h6 id="json分类："><a href="#json分类：" class="headerlink" title="json分类："></a>json分类：</h6><ol>
+<li>json对象，JSONObject，这种对象的格式，名称：值，可以看做是key:value 格式</li>
+<li>json数组，JSONArray，基本格式[{name:”河北”,jiancheng:”冀”,shenghui:”石家庄”}name:”陕西”,jiancheng:”晋”,shenghui:”不知道”}]</li>
+</ol>
+<p>为什么要使用json？</p>
+<ul>
+<li>json格式好理解</li>
+<li>json格式数据在多种语言中，比较容易处理</li>
+<li>json格式数据在他占用的空间下，在网络中传输快，用户体验好</li>
+</ul>
+<h1 id="json如何使用"><a href="#json如何使用" class="headerlink" title="json如何使用"></a>json如何使用</h1><p>处理json的工具库：</p>
+<ul>
+<li>gson(google)</li>
+<li>fastjson(速度快，不是最符合json处理规范)</li>
+<li>jackson（性能好，规范好）</li>
+<li>json-lib(性能差，依赖多)</li>
+</ul>
+<p>我们使用的是jackson</p>
+<p>maven的坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--以上【三个jar包紧密依赖】同时存在。--&gt;</span></span><br><span class="line"> </span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.jackson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-mapper-asl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.jackson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core-asl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用案例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Province p=<span class="keyword">new</span> <span class="title class_">Province</span>();</span><br><span class="line">p.setId();</span><br><span class="line">p.setName();</span><br><span class="line">...存入数据</span><br><span class="line">    </span><br><span class="line"><span class="comment">//使用jackson把p转为json</span></span><br><span class="line">ObjectMapper om=<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"><span class="comment">//writeValueAsString :把参数的java对象转为json格式的字符串</span></span><br><span class="line">String json=om.writeValueAsString(p);</span><br><span class="line">System.out.println(<span class="string">&quot;转换的json==&quot;</span>+json);</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line"><span class="comment">//转换的json==&#123;name:&quot;河北&quot;,jiancheng:&quot;冀&quot;,shenghui:&quot;石家庄&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Servlet对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给一个默认值，一个空的json，确保有json输入</span></span><br><span class="line">String json=<span class="string">&quot;&#123;&#125;&quot;</span></span><br><span class="line"><span class="comment">//获取请求参数，省份的id</span></span><br><span class="line">String str=request.getParameter(<span class="string">&quot;proid&quot;</span>);</span><br><span class="line"><span class="comment">//判断proid有值时，调用dao查询数据</span></span><br><span class="line"><span class="keyword">if</span>(str!=<span class="literal">null</span>&amp;&amp; str.trim().length()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    ProvinceDao dao=<span class="keyword">new</span> <span class="title class_">ProvinceDao</span>();</span><br><span class="line">    Province p=dao.queryProviceById(Integer.valueOf(Str));</span><br><span class="line"><span class="comment">//需要用jackson把Provice对象转为json</span></span><br><span class="line">    ObjectMapper om=<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">    json=om.writeValueAsString(p);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//把获取的数据，通过网络传给AJAX的异步对象，响应数据</span></span><br><span class="line">    response.setContentType(<span class="string">&quot;application/json;charset=utf-8&quot;</span>);</span><br><span class="line">    PrintWriter pw=response.getWriter();</span><br><span class="line">    pw.println(json);</span><br><span class="line">    <span class="comment">//输出数据，赋值给ajax中的responseText</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>html中的js语句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date=xmlHttp.<span class="property">responseText</span>;</span><br><span class="line"><span class="comment">//eval是执行括号中的代码，将json字符串转为json对象</span></span><br><span class="line"><span class="keyword">var</span> jsonobj=<span class="built_in">eval</span>(<span class="string">&quot;(&quot;</span>+data+<span class="string">&quot;)&quot;</span>);</span><br><span class="line"><span class="comment">//更新dom对象</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;proname&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">name</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;projiancheng&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">jiancheng</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;proshenghui&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">shenghui</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在dom对象更新中有点复杂，可以嵌套函数来简化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(xmlHttp.<span class="property">readyState</span> == <span class="number">4</span>&amp;&amp;xmlHttp.<span class="property">status</span>== <span class="number">200</span>)&#123;</span><br><span class="line"><span class="keyword">var</span> date=xmlHttp.<span class="property">responseText</span>;</span><br><span class="line"><span class="comment">//eval是执行括号中的代码，将json字符串转为json对象</span></span><br><span class="line"><span class="keyword">var</span> jsonobj=<span class="built_in">eval</span>(<span class="string">&quot;(&quot;</span>+data+<span class="string">&quot;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">callback</span>(json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params">json</span>)&#123;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;proname&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">name</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;projiancheng&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">jiancheng</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;proshenghui&quot;</span>).<span class="property">value</span>=jsonobj.<span class="property">shenghui</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h1><p>在使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.<span class="title function_">open</span>(请求方式get|post,<span class="string">&quot;服务器端的访问地址&quot;</span>，同步(<span class="literal">false</span>)|异步(<span class="literal">true</span>));</span><br></pre></td></tr></table></figure>
+
+<p>使用true是指异步处理请求，使用异步对象发起请求后，不用等待数据处理完毕，就可以执行其他的操作</p>
+<p>再</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<p>发送请求</p>
+<p>在这之后执行在send之后的代码等等</p>
+<p>类似多线程执行代码</p>
+<p>同时也可以创建多个异步对象，进行多线程操作</p>
+<p>异步不会影响其他代码的执行，相当于可以同时执行其它请求</p>
+<p>同步请求是比较浪费资源的，在更新数据时候一般都是使用异步对象的</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总的来说还是太过于粗略了，也只是快速入门，做一个了解罢了</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="http://example.com/2023/06/28/AJAX/" data-id="cljfdn48c00008wi22ie64kan" data-title="AJAX"
+               class="article-share-link">Share</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav">
+        
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Springboot"
+                             class="lazyload">
+                    
+                
+                <a href="/2023/06/28/Springboot/"></a>
+                <div class="article-nav-caption">Newer</div>
+                <div class="article-nav-title">
+                    
+                        Springboot
+                    
+                </div>
+            </div>
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="mybatis笔记"
+                             class="lazyload">
+                    
+                
+                <a href="/2023/06/28/mybatis%E7%AC%94%E8%AE%B0/"></a>
+                <div class="article-nav-caption">Older</div>
+                <div class="article-nav-title">
+                    
+                        mybatis笔记
+                    
+                </div>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>Posts</div>
+                <div class="sidebar-state-number">7</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>Categories</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>Tags</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Home</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Archives</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">About</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Friend</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+
+    
+        
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">Archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                John Doe
+            </div>
+            
+                <div>
+                    Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    30.9k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    02:16
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>Posts</div>
+                <div class="sidebar-state-number">7</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>Categories</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>Tags</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Home</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Archives</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">About</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Friend</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+

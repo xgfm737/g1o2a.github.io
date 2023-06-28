@@ -1,0 +1,686 @@
+
+    <!DOCTYPE html>
+    <html lang="en"
+            
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        js入门 |
+        
+        Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="JavaScript基础语法 书写语法 输出语句 变量 数据类型 运算符 流程控制语句 函数  书写语法 区分大小写 行结尾的分号可有可无 大括号内包含代码块  输出语句12345window.alert();&#x2F;&#x2F;弹出警告框doucument.write();&#x2F;&#x2F;写入HTMLconsole.log();&#x2F;&#x2F;写入控制台  变量 JavaScript中使用var关键字来声明变量 12var test&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js入门">
+<meta property="og:url" content="http://example.com/2023/06/28/js%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JavaScript基础语法 书写语法 输出语句 变量 数据类型 运算符 流程控制语句 函数  书写语法 区分大小写 行结尾的分号可有可无 大括号内包含代码块  输出语句12345window.alert();&#x2F;&#x2F;弹出警告框doucument.write();&#x2F;&#x2F;写入HTMLconsole.log();&#x2F;&#x2F;写入控制台  变量 JavaScript中使用var关键字来声明变量 12var test&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-28T07:00:37.000Z">
+<meta property="article:modified_time" content="2023-06-28T07:03:45.260Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="js入门" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo">js入门</a>
+                    
+                
+            </h1>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">Home</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">Archives</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">About</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">Friend</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS Feed"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-js入门" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date">
+    <a href="/2023/06/28/js%E5%85%A5%E9%97%A8/" class="article-date-link">
+        <time datetime="2023-06-28T07:00:37.000Z"
+              itemprop="datePublished">2023-06-28</time>
+    </a>
+</div>
+
+            
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="JavaScript基础语法"><a href="#JavaScript基础语法" class="headerlink" title="JavaScript基础语法"></a>JavaScript基础语法</h1><ul>
+<li>书写语法</li>
+<li>输出语句</li>
+<li>变量</li>
+<li>数据类型</li>
+<li>运算符</li>
+<li>流程控制语句</li>
+<li>函数</li>
+</ul>
+<h6 id="书写语法"><a href="#书写语法" class="headerlink" title="书写语法"></a>书写语法</h6><ol>
+<li>区分大小写</li>
+<li>行结尾的分号可有可无</li>
+<li>大括号内包含代码块</li>
+</ol>
+<h6 id="输出语句"><a href="#输出语句" class="headerlink" title="输出语句"></a>输出语句</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>();<span class="comment">//弹出警告框</span></span><br><span class="line"></span><br><span class="line">doucument.<span class="title function_">write</span>();<span class="comment">//写入HTML</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>();<span class="comment">//写入控制台</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h6><ul>
+<li><p>JavaScript中使用var关键字来声明变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test=<span class="number">20</span>;</span><br><span class="line">test=<span class="string">&quot;张三&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JavaScript是一门弱类型的语言，<mark>变量可以存放不同类型的值</mark></p>
+</li>
+<li><p>变量名需要遵循以下的规则：</p>
+<ol>
+<li>组成字符可以是任何字母，数字，下划线或美元符号</li>
+<li>数字不能开头</li>
+<li>建议使用驼峰命名</li>
+</ol>
+</li>
+<li><p>var所声明的变量都是全局变量</p>
+<p>并且变量可以重复定义，效果是直接进行覆盖的</p>
+</li>
+<li><p>let关键字，来定义变量，用法类似var，但定义的变量是局部变量，并且不允许重复定义</p>
+</li>
+<li><p>const关键字，用来声明一个只读的常量，一旦声明，常量的值就不能进行改变了（类似final关键字声明的变量）</p>
+</li>
+</ul>
+<h6 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h6><p>JavaScript的数据类型分为：原始类型和引用类型</p>
+<p>5种原始类型</p>
+<ul>
+<li><p>number：数字</p>
+</li>
+<li><p>string：字符</p>
+</li>
+<li><p>boolean：布尔类型</p>
+</li>
+<li><p>null：对象为空</p>
+</li>
+<li><p>undefined：当变量未初始化时，该变量的默认值是undefined</p>
+<p>使用typeof运算符可以获取数据类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="keyword">typeof</span> age);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h6><ul>
+<li><p>一元运算符</p>
+</li>
+<li><p>算术运算符</p>
+</li>
+<li><p>赋值运算符</p>
+</li>
+<li><p>关系运算符（与java相比，多了一个&#x3D;&#x3D;&#x3D;）</p>
+<p>&#x3D;&#x3D;判断方法：</p>
+<ol>
+<li>判断类型是否一致，如果不一样，则进行类型转换</li>
+<li>再去比较</li>
+</ol>
+<p>&#x3D;&#x3D;&#x3D;判断方法：</p>
+<ol>
+<li>判断类型是否一样，不一样直接返回false</li>
+<li>如果一样，比较值是否一样</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age1=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">var</span> age2=<span class="string">&quot;20&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(ag1==age2);<span class="comment">//true</span></span><br><span class="line"><span class="title function_">alert</span>(ag1===age2);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逻辑运算符</p>
+</li>
+<li><p>三元运算符   条件表达式?true_value : false_value</p>
+</li>
+</ul>
+<h6 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h6><p>其他类型转为number:</p>
+<ul>
+<li><p>string :按照字符串的字面值，转为数字，如果不是数字，则转为NaN。一般使用parseInt进行转换</p>
+</li>
+<li><p>boolean：按照true转为1， false转为0</p>
+</li>
+</ul>
+<p>其他类型转为boolean:</p>
+<ul>
+<li><p>number：0和NaN转为false，其他的数字转为true</p>
+</li>
+<li><p>string：字符串有内容转换为true，没有内容转换为false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//因此可以直接对str进行健壮性判断</span></span><br><span class="line"><span class="keyword">if</span>(str)&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;true&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>null 转换为false</p>
+</li>
+<li><p>undefined 转换为false</p>
+</li>
+</ul>
+<h6 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h6><ul>
+<li>if</li>
+<li>switch</li>
+<li>for</li>
+<li>while</li>
+<li>do…while</li>
+</ul>
+<h6 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h6><p>js中的函数是通过function进行定义的，语法为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function functionName(参数)&#123;</span><br><span class="line">执行的代码</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var functionName= function(参数)&#123;</span><br><span class="line">执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h1><h6 id="Array数组对象"><a href="#Array数组对象" class="headerlink" title="Array数组对象"></a>Array数组对象</h6><ul>
+<li>定义</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名=<span class="keyword">new</span> <span class="title class_">Array</span>(元素列表);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> 变量名=[元素列表]；</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr[index] =值;</span><br><span class="line">arr[0] =1;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>特点</p>
+<p>该数组其实相当于java中的集合pro，是变长，变类型的，没有定义长度和放入元素的类型</p>
+</li>
+<li><p>属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//length：数组中的元素个数</span></span><br><span class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line"><span class="title function_">alert</span>(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//push：添加方法</span></span><br><span class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.<span class="title function_">push</span>(<span class="number">10</span>);</span><br><span class="line"><span class="title function_">alert</span>(arr);<span class="comment">//输出1，2，3，10</span></span><br><span class="line"><span class="comment">//splice:删除元素</span></span><br><span class="line">arr.<span class="title function_">splice</span>(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">//spice方法的第一个参数是从第几个开始删除数据，第二个参数是从删除几个的参数</span></span><br><span class="line"><span class="title function_">alert</span>(arr);<span class="comment">//输出2,3</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="String字符串对象"><a href="#String字符串对象" class="headerlink" title="String字符串对象"></a>String字符串对象</h6><ul>
+<li>定义</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名=<span class="keyword">new</span> <span class="title class_">String</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> 变量名=s;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//length属性</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">&quot;aaa&quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(str.<span class="property">length</span>);</span><br><span class="line"><span class="comment">//输出3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//trim()</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">&quot;   aaa    &quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(<span class="number">1</span>+str+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//输出1   aaa    1</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="number">1</span>+str.<span class="title function_">trim</span>()+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//输出1aaa1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h6><ul>
+<li><p>自定义格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 对象名称=&#123;</span><br><span class="line">属性名称<span class="number">1</span>:属性值<span class="number">1</span>,</span><br><span class="line">属性名称<span class="number">2</span>:属性值<span class="number">2</span>,</span><br><span class="line">.......</span><br><span class="line">函数名称:<span class="keyword">function</span>(<span class="params">形参列表</span>)&#123;</span><br><span class="line">方法代码</span><br><span class="line">&#125;</span><br><span class="line">.....</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person =&#123;</span><br><span class="line"><span class="attr">name</span>:<span class="string">&quot;zhangsan&quot;</span>,</span><br><span class="line"><span class="attr">age</span>:<span class="number">23</span>,</span><br><span class="line"><span class="attr">eat</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="title function_">alert</span>(干饭！！);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(person.<span class="property">name</span>);</span><br><span class="line"><span class="comment">//输出zhangsan</span></span><br><span class="line"><span class="title function_">alert</span>(person.<span class="property">age</span>);</span><br><span class="line"><span class="comment">//输出23</span></span><br><span class="line">perspm.<span class="title function_">eat</span>();</span><br><span class="line"><span class="comment">//输出干饭！！</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="BOM对象-浏览器对象模型"><a href="#BOM对象-浏览器对象模型" class="headerlink" title="BOM对象 浏览器对象模型"></a>BOM对象 浏览器对象模型</h1><p>BOM对象全称 Browser Object Model</p>
+<p>JavaScript将浏览器的各个组成部分封装为对象</p>
+<p>组成：</p>
+<ul>
+<li>Window：浏览器对象</li>
+<li>Navigator：浏览器对象</li>
+<li>Screen：屏幕对象</li>
+<li>History：历史记录对象</li>
+<li>Location：地址栏对象</li>
+</ul>
+<h6 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h6><p>直接使用window，并且其中的window.可以省略</p>
+<p>属性：</p>
+<p>可以获取其他四个对象</p>
+<p>方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(内容);</span><br><span class="line"><span class="comment">//警告框</span></span><br><span class="line"><span class="title function_">confirm</span>(内容);</span><br><span class="line"><span class="comment">//对话框</span></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,毫秒值);</span><br><span class="line"><span class="comment">//重复执行的定时器</span></span><br><span class="line"><span class="title function_">setTimout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,毫秒值);</span><br><span class="line"><span class="comment">//只执行一次的定时器</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h6><ul>
+<li><p>获取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history.方法();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">back</span>();</span><br><span class="line"><span class="comment">//加载history列表的前一个URL</span></span><br><span class="line"><span class="title function_">forward</span>();</span><br><span class="line"><span class="comment">//加载history列表的下一个URL</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h6><ul>
+<li><p>获取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.方法();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性</p>
+<p>href  设置或返回完整的URL</p>
+</li>
+</ul>
+<h1 id="DOM对象-文档对象模型"><a href="#DOM对象-文档对象模型" class="headerlink" title="DOM对象  文档对象模型"></a>DOM对象  文档对象模型</h1><p>将标记语言的各个组成部分封装为对象</p>
+<ul>
+<li>Document：整个文档对象</li>
+<li>Element：元素对象</li>
+<li>Attribute：属性对象</li>
+<li>Text：文本对象</li>
+<li>Comment：注释对象</li>
+</ul>
+<p>js可以通过DOM来对HTML进行操作</p>
+<ul>
+<li>改变HTML元素的内容</li>
+<li>改变HTML元素的样式</li>
+<li>对HTML DOM事件做出反应</li>
+<li>添加和删除HTML元素</li>
+</ul>
+<p>W3C DOM标准被分为了3个不同的部分：</p>
+<ol>
+<li>核心DOM：针对任何结构化文档的标准模型</li>
+<li>XML DOM：针对XML文档的标准模型</li>
+<li>HTML DOM：针对HTML文档的标准模型</li>
+</ol>
+<h6 id="获取Element元素对象"><a href="#获取Element元素对象" class="headerlink" title="获取Element元素对象"></a>获取Element元素对象</h6><ul>
+<li>Element元素对象</li>
+<li>使用Document对象的方法来获取</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getElementsById</span><br><span class="line"><span class="comment">//根据id属性值获取，返回一个Element对象</span></span><br><span class="line">getElementsByTagName</span><br><span class="line"><span class="comment">//根据标签名称获取，返回Element对象数组</span></span><br><span class="line">getElementsByName</span><br><span class="line"><span class="comment">//根据name属性值获取，返回Element对象数组</span></span><br><span class="line">getElementsByClassName</span><br><span class="line"><span class="comment">//根据class属性值获取，返回Element对象数组</span></span><br></pre></td></tr></table></figure>
+
+<p>其他详细的使用去查看官方文档</p>
+<h1 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h1><p>事件是指发生在HTML元素上的“事情” 比如</p>
+<ul>
+<li>按钮被点击</li>
+<li>鼠标移动到元素之上</li>
+<li>按下键盘按键</li>
+</ul>
+<p>事件监听是指js可以在事件被侦测到时执行代码</p>
+<h6 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h6><ol>
+<li><p>通过HTML标签中的事件属性进行绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span> onclike=<span class="string">&#x27;on()&#x27;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">on</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;点击&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过DOM元素属性进行绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span> id=<span class="string">&quot;button&quot;</span>&gt;</span><br><span class="line">doucment.<span class="title function_">getElementById</span>(<span class="string">&quot;button&quot;</span>).<span class="property">onclick</span>= <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;点击&quot;</span>);</span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure></li>
+</ol>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="http://example.com/2023/06/28/js%E5%85%A5%E9%97%A8/" data-id="cljfdn48h00038wi27zvy3has" data-title="js入门"
+               class="article-share-link">Share</a>
+            
+            
+            
+            
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav">
+        
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="javaweb"
+                             class="lazyload">
+                    
+                
+                <a href="/2023/06/28/javaweb/"></a>
+                <div class="article-nav-caption">Newer</div>
+                <div class="article-nav-title">
+                    
+                        javaweb
+                    
+                </div>
+            </div>
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="伊苏尔德"
+                             class="lazyload">
+                    
+                
+                <a href="/2023/02/28/hello-world/"></a>
+                <div class="article-nav-caption">Older</div>
+                <div class="article-nav-title">
+                    
+                        伊苏尔德
+                    
+                </div>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>Posts</div>
+                <div class="sidebar-state-number">7</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>Categories</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>Tags</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Home</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Archives</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">About</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Friend</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+
+    
+        
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">Archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                John Doe
+            </div>
+            
+                <div>
+                    Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    30.9k
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    02:16
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>Posts</div>
+                <div class="sidebar-state-number">7</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>Categories</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>Tags</div>
+                <div class="sidebar-state-number">0</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Home</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Archives</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">About</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">Friend</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+
