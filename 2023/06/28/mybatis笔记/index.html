@@ -24,7 +24,7 @@
 <meta property="og:description" content="什么是myBatismybatis是一个优秀的持久层框架，用于简化JDBC（JDBC白学） JDBC的缺点1.硬编码  注册驱动和获取链接 sql语句  2.操作繁琐  需要手动封装结果集ResultSet preparedstatement手动设置参数  mybatis免除看几乎所有的JDBC代码以及设置参数和获取结果集的工作 myBatis快速入门 创建项目  新建maven模块  在pom.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-28T07:01:20.000Z">
-<meta property="article:modified_time" content="2023-06-28T13:50:29.507Z">
+<meta property="article:modified_time" content="2023-06-28T13:52:51.415Z">
 <meta property="article:author" content="星光浮梦">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -452,7 +452,7 @@
 <p><mark>使用resultMap</mark></p>
 <ol>
 <li>resultMap定义resultMap</li>
-<li>在<select>标签使用resultMap属性替换resultType属性（resultType的原来的type在resultMap中的type字段好像是一致的）</li>
+<li>在select标签使用resultMap属性替换resultType属性（resultType的原来的type在resultMap中的type字段好像是一致的）</li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;brandResultMap&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;brand&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">id:完成主键字段的映射</span><br><span class="hljs-comment">   column：表的列名</span><br><span class="hljs-comment">   property:实体类的属性名</span><br><span class="hljs-comment">result：完成一般字段的映射</span><br><span class="hljs-comment">   column：表的列名</span><br><span class="hljs-comment">   property:实体类的属性名</span><br><span class="hljs-comment">--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;brand_name&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;brandName&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;company_name&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;companyName&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectAll&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;brandResultMap&quot;</span>&gt;</span><br>        select *<br>        from tb_brand;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -663,7 +663,7 @@
 <p>可以直接在Mapper接口中这样写</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select * from tb_user where id = #&#123;id&#125;&quot;)</span><br>    User <span class="hljs-title function_">selectById</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span>;<br></code></pre></td></tr></table></figure>
 
-<p>这样可以直接代替在xml文件中写<select>标签</p>
+<p>这样可以直接代替在xml文件中写select标签</p>
 <p>但是为了防止出现驼峰命名和_命名导致出现null的问题</p>
 <p>需要在mybatis-config.xml文件配置以下设置，开启驼峰命名识别</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mapUnderscoreToCamelCase&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;true&quot;</span> /&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br></code></pre></td></tr></table></figure>
