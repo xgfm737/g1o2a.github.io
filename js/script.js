@@ -1,120 +1,151 @@
-window.addEventListener("DOMContentLoaded", function() {
-  const html            = document.querySelector("html");
-  const navBtn          = document.querySelector(".navbar-btn");
-  const navList         = document.querySelector(".navbar-list");
-  const backToTopFixed  = document.querySelector(".back-to-top-fixed");
-  let lastTop           = 0;
-  let theme             = window.localStorage.getItem('theme') || '';
-
-  theme && html.classList.add(theme)
-
-  const goScrollTop = () => {
-    let currentTop = getScrollTop()
-    let speed = Math.floor(-currentTop / 10)
-    if (currentTop > lastTop) {
-      return lastTop = 0
-    }
-    let distance = currentTop + speed;
-    lastTop = distance;
-    document.documentElement.scrollTop = distance;
-    distance > 0 && window.requestAnimationFrame(goScrollTop)
+// https://github.com/tangyuxian/hexo-theme-tangyuxian
+const getRealPath = (pathname, desc = false) => {
+  if (!pathname) {
+    pathname = window.location.pathname;
   }
+  let names = pathname.split("/");
+  if (desc === false) {
+    for (let i = names.length - 1; i >= 0; --i) {
+      let name = names[i].trim();
+      if (name.length > 0 && name !== "/" && name !== "index.html") {
+        return name;
+      }
+    }
+  } else {
+    for (let i = 0; i < names.length; ++i) {
+      let name = names[i].trim();
+      if (name.length > 0 && name !== "/" && name !== "index.html") {
+        return name;
+      }
+    }
+  }
+  return "/";
+};
 
-  const toggleBackToTopBtn = (top) => {
-    top = top || getScrollTop()
-    if (top >= 100) {
-      backToTopFixed.classList.add("show")
+(function ($) {
+  // lazysizes
+  const imgs = $('.article-entry img');
+  imgs.each(function() {
+    const src = $(this).attr('src');
+    $(this).addClass('lazyload');
+    $(this).removeAttr('src');
+    $(this).attr('data-src', src);
+    $(this).attr('data-sizes','auto');
+  })
+  // Share
+  $('body').on('click', function () {
+    $('.article-share-box.on').removeClass('on');
+  }).on('click', '.article-share-link', function (e) {
+    e.stopPropagation();
+
+    const $this = $(this),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      id = 'article-share-box-' + $this.attr('data-id'),
+      title = $this.attr('data-title'),
+      offset = $this.offset();
+
+    if ($('#' + id).length) {
+      var box = $('#' + id);
+
+      if (box.hasClass('on')) {
+        box.removeClass('on');
+        return;
+      }
     } else {
-      backToTopFixed.classList.remove("show")
+      const html = [
+        '<div id="' + id + '" class="article-share-box">',
+        '<input class="article-share-input" value="' + url + '">',
+        '<div class="article-share-links">',
+        '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+        '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+        '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' + encodedUrl + '" class="article-share-linkedin" target="_blank" title="LinkedIn"></a>',
+        '</div>',
+        '</div>'
+      ].join('');
+
+      var box = $(html);
+
+      $('body').append(box);
     }
-  }
 
-  toggleBackToTopBtn()
+    $('.article-share-box.on').hide();
 
-  // theme light click
-  document.querySelector('#theme-light').addEventListener('click', function () {
-    html.classList.remove('theme-dark')
-    html.classList.add('theme-light')
-    window.localStorage.setItem('theme', 'theme-light')
-  })
+    box.css({
+      top: offset.top + 25,
+      left: offset.left
+    }).addClass('on');
+  }).on('click', '.article-share-box', function (e) {
+    e.stopPropagation();
+  }).on('click', '.article-share-box-input', function () {
+    $(this).select();
+  }).on('click', '.article-share-box-link', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-  // theme dark click
-  document.querySelector('#theme-dark').addEventListener('click', function () {
-    html.classList.remove('theme-light')
-    html.classList.add('theme-dark')
-    window.localStorage.setItem('theme', 'theme-dark')
-  })
-
-  // theme auto click
-  document.querySelector('#theme-auto').addEventListener('click', function() {
-    html.classList.remove('theme-light')
-    html.classList.remove('theme-dark')
-    window.localStorage.setItem('theme', '')
-  })
-
-  // mobile nav click
-  navBtn.addEventListener("click", function () {
-    html.classList.toggle("show-mobile-nav");
-    this.classList.toggle("active");
+    window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
   });
 
-  // mobile nav link click
-  navList.addEventListener("click", function (e) {
-    if (e.target.nodeName == "A" && html.classList.contains("show-mobile-nav")) {
-      navBtn.click()
-    }
-  })
+  // Caption
+  $('.article-entry').each(function (i) {
+    $(this).find('img').each(function () {
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
 
-  // click back to top
-  backToTopFixed.addEventListener("click", function () {
-    lastTop = getScrollTop()
-    goScrollTop()
+      // ignore friendsLink
+      if ($(this).parent().hasClass('friend-icon')) return;
+
+      const alt = this.alt;
+
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+
+      $(this).wrap('<a href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+    });
+
+    $(this).find('.fancybox').each(function () {
+      $(this).attr('rel', 'article' + i);
+    });
   });
 
-  window.addEventListener("scroll", function () {
-    toggleBackToTopBtn()
-  }, { passive: true });
-
-  /** handle lazy bg iamge */
-  handleLazyBG();
-});
-
-/**
- * 获取当前滚动条距离顶部高度
- *
- * @returns 距离高度
- */
-function getScrollTop () {
-  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-}
-
-function querySelectorArrs (selector) {
-  return Array.from(document.querySelectorAll(selector))
-}
-
-
-function handleLazyBG () {
-  const lazyBackgrounds = querySelectorArrs('[background-image-lazy]')
-  let lazyBackgroundsCount = lazyBackgrounds.length
-  if (lazyBackgroundsCount > 0) {
-    let lazyBackgroundObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function({ isIntersecting, target }) {
-        if (isIntersecting) {
-          let img = target.dataset.img
-          if (img) {
-            target.style.backgroundImage = `url(${img})`
-          }
-          lazyBackgroundObserver.unobserve(target)
-          lazyBackgroundsCount --
-        }
-        if (lazyBackgroundsCount <= 0) {
-          lazyBackgroundObserver.disconnect()
-        }
-      })
-    })
-
-    lazyBackgrounds.forEach(function(lazyBackground) {
-      lazyBackgroundObserver.observe(lazyBackground)
-    })
+  if ($.fancybox) {
+    $('.fancybox').fancybox();
   }
-}
+
+  // Mobile nav
+  const $container = $('#container'),
+    isMobileNavAnim = false,
+    mobileNavAnimDuration = 200;
+
+  const startMobileNavAnim = function () {
+    isMobileNavAnim = true;
+  };
+
+  const stopMobileNavAnim = function () {
+    setTimeout(function () {
+      isMobileNavAnim = false;
+    }, mobileNavAnimDuration);
+  }
+
+  $('#main-nav-toggle').on('click', function () {
+    if (isMobileNavAnim) return;
+
+    startMobileNavAnim();
+    $container.toggleClass('mobile-nav-on');
+    stopMobileNavAnim();
+  });
+
+  $('#wrap').on('click', function () {
+    if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
+
+    $container.removeClass('mobile-nav-on');
+  });
+
+
+  const rootRealPath = getRealPath(window.location.pathname, true);
+  for (let link of $('.sidebar-menu-link-wrap')) {
+    let linkPath = $(link).find("a")[0].getAttribute("href");
+    if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "sidebar-menu-link-wrap link-active";
+    }
+  }
+})(jQuery);
