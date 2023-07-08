@@ -30,7 +30,7 @@
 <meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705013714220.png">
 <meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705014246430.png">
 <meta property="article:published_time" content="2023-06-29T06:50:24.000Z">
-<meta property="article:modified_time" content="2023-07-06T16:07:44.920Z">
+<meta property="article:modified_time" content="2023-07-08T10:12:08.172Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="拓展">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          5.3k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          28 分钟
+          45 分钟
         
       </span>
     
@@ -361,7 +361,53 @@
 <p>small batch 和 large batch差距如图</p>
 <p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705014246430.png" srcset="/img/loading.gif" lazyload alt="image-20230705014246430"></p>
 <p>需要调整对应的超参数。</p>
-<h1 id="Momentum-动量梯度下降法"><a href="#Momentum-动量梯度下降法" class="headerlink" title="Momentum(动量梯度下降法)"></a>Momentum(动量梯度下降法)</h1>
+<h1 id="Momentum-动量梯度下降法"><a href="#Momentum-动量梯度下降法" class="headerlink" title="Momentum(动量梯度下降法)"></a>Momentum(动量梯度下降法)</h1><h1 id="Yolov5"><a href="#Yolov5" class="headerlink" title="Yolov5"></a>Yolov5</h1><p>首先需要完成pytorch的配置（CUDA版本）</p>
+<p>github下载yolo并导入，并且设置编译器为对应的版本，然后导入需要的包</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+
+<p> 然后下载 yolov5s.pt 权重文件。</p>
+<p>一般来说这样就可以运行了</p>
+<p>如果需要检测视频则需要对parse_opt函数进行修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># parser.add_argument(&#x27;--source&#x27;, type=str, default=ROOT / &#x27;data/images&#x27;, help=&#x27;file/dir/URL/glob/screen/0(webcam)&#x27;)</span><br>   parser.add_argument(<span class="hljs-string">&#x27;--source&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, default=ROOT / <span class="hljs-string">&#x27;data/video&#x27;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;file/dir/URL/glob/screen/0(webcam)&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>开启摄像头检测，将代码改成 default&#x3D;‘0’，便可开启自带摄像头</p>
+<p>将代码改成 default&#x3D;‘1’，便可开启 USB 摄像头，进行动态的实时检测</p>
+<h5 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h5><h6 id="cv2无法导入"><a href="#cv2无法导入" class="headerlink" title="cv2无法导入"></a>cv2无法导入</h6><p>pip install opencv-python</p>
+<p>要在使用的环境中执行（我就是没在使用的环境中进行，然后导致后面其他的问题 ）</p>
+<h6 id="Couldn’t-load-custom-C-ops"><a href="#Couldn’t-load-custom-C-ops" class="headerlink" title="Couldn’t load custom C++ ops"></a>Couldn’t load custom C++ ops</h6><p>它通常是由PyTorch和torchvision版本不兼容引起的。需要确保当前安装的PyTorch和torchvision版本是兼容的</p>
+<p>但是我在python中运行如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torchvision<br><br><span class="hljs-built_in">print</span>(torch.__version__)<br><span class="hljs-built_in">print</span>(torchvision.__version__)<br></code></pre></td></tr></table></figure>
+
+<p>显示结果为：</p>
+<p>1.11.0</p>
+<p> 0.12.0</p>
+<p>是正确对应的结果，但是就是无法使用</p>
+<p>然后我搜了一下网上的资料，说需要重新配置pytorch，然后使用命令将pytorch删除干净。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip uninstall torch<br>pip uninstall torchvision<br>pip uninstall torchaudio<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">conda uninstall torch<br>conda uninstall torchvision<br>conda uninstall torchaudio<br></code></pre></td></tr></table></figure>
+
+<p>都执行了一遍，自认为是卸载干净了。</p>
+<p>根据pytorch官网找到的torch，torchvision，torchaudio的指令进行pip安装，然后发现与之前的安装相比，好像多出来了一些东西，可能是因为之前下载未关闭VPN，导致下载的版本不相互匹配或者甚至无法使用的关系吧。</p>
+<p>然后再运行代码查看一遍torch和torchvision版本</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-number">1</span>.<span class="hljs-number">12</span>.<span class="hljs-number">1</span>+cu113<br><span class="hljs-number">0</span>.<span class="hljs-number">13</span>.<span class="hljs-number">1</span>+cu113<br></code></pre></td></tr></table></figure>
+
+<p>虽然是换了一个1.12的版本进行使用，但确确实实比之前的多出了cu113，但感觉区别不是很大（还未进行探究），总之问题解决了。</p>
+<h6 id="openSSL与urllib不匹配"><a href="#openSSL与urllib不匹配" class="headerlink" title="openSSL与urllib不匹配"></a>openSSL与urllib不匹配</h6><p>这个错误是由于使用的urllib3版本不兼容您当前的OpenSSL版本所引起的。</p>
+<p>但是我在cmd的查询和在虚拟环境中的查询都显示我所使用的openssl版本为1.1.1，但代码运行的报错提醒为1.1.0，目前尚未解决。</p>
+<p>根据网上的说法，我发现可能是之前卸载torch的时候没卸载干净，因为我换成1.12进行使用，而之前的cuda为1.11版本，我认为极有可能是这个原因导致电脑中有2个openssl存在，而python使用的是之前存在的1.1.0版本的openssl库。</p>
+<p>网上的说法是需要重新配置python编译器，使用.&#x2F;configure来实现配置：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">./configure --with-openssl=/<span class="hljs-built_in">path</span>/to/openssl<br>make<br>sudo make install<br></code></pre></td></tr></table></figure>
+
+<p>其中的&#x2F;path&#x2F;to&#x2F;openssl是openssl的路径。</p>
+<p>但由于我使用的是虚拟环境，虽然使用where openssl找出了2个不同版本的openssl库所在的位置，无法使用configure重新配置虚拟的python环境（因为我不会，切换到虚拟环境目录下之后，会提示configure不是指令等错误）然后我又尝试直接复制黏贴，暴力地替换openssl，但是还是没有效果</p>
+<p>最后，我使用了另外一种解决方案：</p>
+<p>既然openssl不知怎么修改，我改变策略对urllib进行了修改</p>
+<p>降低urllib版本为1.25.11版本，使其能够使用1.1.0版本的openssl文件</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install urllib3==<span class="hljs-number">1</span>.<span class="hljs-number">25</span>.<span class="hljs-number">11</span><br></code></pre></td></tr></table></figure>
+
+<p>然后问题解决了</p>
+
                 
               </div>
             
