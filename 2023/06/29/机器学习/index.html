@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Isolde">
 <meta property="og:description" content="机器学习基本概念基础定义 定义带有未知数的函数  定义loss函数，输入b,w。该函数的输出值为所拥有的训练集 这些函数是机器自己找出来的，需要自己设定hyperparameters（超参数），期间需要反复移动W。有俩种情况下，会停止一定w  达到了调整次数设定的上限 微分算出来的值刚刚为0   local minima和global minima。在进行gradient descent（梯度下降">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230701210755380.png">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230701213123620.png">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230702005122170.png">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230702005528584.png">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705013714220.png">
-<meta property="og:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705014246430.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020350804.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020404213.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020412244.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020419119.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020431220.png">
+<meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020437010.png">
 <meta property="article:published_time" content="2023-06-29T06:50:24.000Z">
-<meta property="article:modified_time" content="2023-07-10T11:28:15.976Z">
+<meta property="article:modified_time" content="2023-07-17T18:04:55.470Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="拓展">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230701210755380.png">
+<meta name="twitter:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020350804.png">
   
   
   
@@ -291,7 +291,7 @@
 <li>微分算出来的值刚刚为0</li>
 </ul>
 </li>
-<li><p>local minima和global minima。在进行gradient descent（梯度下降法）时候会存在一定的local minima的问题<img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230701210755380.png" srcset="/img/loading.gif" lazyload alt="image-20230701210755380"></p>
+<li><p>local minima和global minima。在进行gradient descent（梯度下降法）时候会存在一定的local minima的问题<img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020350804.png" srcset="/img/loading.gif" lazyload alt="image-20230718020350804"></p>
 <p><mark>都需要分别减去learning rate，反复进行更新，找到最优的w和b</mark></p>
 </li>
 </ol>
@@ -301,15 +301,15 @@
 <p>因此我们需要对Model进行改进，需要一个更加复杂、灵活的，并带有未知参数的Function。</p>
 <p>复杂的曲线，更像是一个常数，再加上一堆不同的函数，称为Piecewise Linear 的 Curves。曲线的转折越多越复杂，所需要的函数就越多</p>
 <p>所以只要有<strong>不同的 w 不同的 b 不同的 c,你就可以制造出不同的 Sigmoid Function。</strong>把<strong>不同的 Sigmoid Function 叠加起来以后，就可以去逼近各种不同的Piecewise Linear 的 Function,然后 Piecewise Linear 的 Function,可以拿来近似各种不同的 Continuous 的 Function</strong>。</p>
-<p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230701213123620.png" srcset="/img/loading.gif" lazyload alt="image-20230701213123620"></p>
+<p><img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020404213.png" srcset="/img/loading.gif" lazyload alt="image-20230718020404213"></p>
 <p>这样能使的写出更加有弹性的函数</p>
 <h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>x是Feature，W是权重组成的矩阵，绿色框的b为向量，灰色框的b为数值，c为常数组成的向量。那么W c 向量b 常数b就是Unknown Parameters，也就是未知的参数</p>
-<p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230702005122170.png" srcset="/img/loading.gif" lazyload alt="image-20230702005122170"></p>
+<p><img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020412244.png" srcset="/img/loading.gif" lazyload alt="image-20230718020412244"></p>
 <p>第二步就是要为这个新的Function定义一个新的Loss。</p>
 <p>与之前Linear Model的Loss的定义的方法相同，由于这次参数变多了，就直接用θ来统设所有的参数，则Loss Function就可表示成L（θ）</p>
 <p>最后一步进行优化，首先给定一组θ的值，然后把Feature带入，查看y和真实的label之间的差距，把所有的误差相加，就可以得到loss了。我们需要找到一组θ，使得loss越小越好</p>
 <p>先由θ0计算Gradient（梯度），根据得到的梯度将θ0更新为θ1；之后再根据θ1计算新的Gradient，再把θ1更新为θ2……以此类推，直到计算次数达到了预先指定的上限；或者计算出来的梯度为0向量，让你无法再更新参数为止</p>
-<p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230702005528584.png" srcset="/img/loading.gif" lazyload alt="image-20230702005528584"></p>
+<p><img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020419119.png" srcset="/img/loading.gif" lazyload alt="image-20230718020419119"></p>
 <p>在实际操作中，如果手中有N个数据，一般会将N个数据分成一个个的Batch，计算LOSS时只拿一个batch中的Data计算Loss，设为L1，根据这个 L1 来算 Gradient，用这个 Gradient 来更新参数。再选用下一个batch算出L2，再算出对应的Gradient，再用这个Gradient更新参数….</p>
 <p><strong>所以我们并不是拿L来算Gradient。实际上我们是拿一个 Batch算出来的L1 L2 L3来计算 Gradient,那把所有的 Batch 都看过一次,叫做一个Epoch,每一次更新参数叫做一次 Update</strong>。</p>
 <p>一个Hard Sigmoid可以看作Hard Sigmoid，可以看作<strong>两个Rectified Linear Unit（ReLU 修正线性单元）的结合</strong>，使用不同数量的ReLU得出的结果有一定的差别，重复的次数又是一个Hyper Parameter，重复的次数也是由人所决定的</p>
@@ -355,11 +355,11 @@
 </ol>
 <h1 id="Batch"><a href="#Batch" class="headerlink" title="Batch"></a>Batch</h1><p>batch size&#x3D;n，更新参数需要看完n笔资料。</p>
 <p>不使用batch的方式是看完所有的batch再进行一次更新，使用batch则是每次输入一笔资料就进行一次更新。</p>
-<p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705013714220.png" srcset="/img/loading.gif" lazyload alt="image-20230705013714220"></p>
+<p><img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020431220.png" srcset="/img/loading.gif" lazyload alt="image-20230718020431220"></p>
 <p>在考虑平行运算的情况下一个epoch大的batch花的时间反而比较少。</p>
 <p>当时large batch时优化可能会较差，small batch(noisy update)对于训练的效果更好一些</p>
 <p>small batch 和 large batch差距如图</p>
-<p><img src="C:\Users\g1o2a\AppData\Roaming\Typora\typora-user-images\image-20230705014246430.png" srcset="/img/loading.gif" lazyload alt="image-20230705014246430"></p>
+<p><img src="/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020437010.png" srcset="/img/loading.gif" lazyload alt="image-20230718020437010"></p>
 <p>需要调整对应的超参数。</p>
 <h1 id="Momentum-动量梯度下降法"><a href="#Momentum-动量梯度下降法" class="headerlink" title="Momentum(动量梯度下降法)"></a>Momentum(动量梯度下降法)</h1><h1 id="Yolov5"><a href="#Yolov5" class="headerlink" title="Yolov5"></a>Yolov5</h1><p>首先需要完成pytorch的配置（CUDA版本）</p>
 <p>github下载yolo并导入，并且设置编译器为对应的版本，然后导入需要的包</p>
