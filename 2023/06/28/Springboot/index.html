@@ -56,7 +56,7 @@
 <meta property="og:image" content="http://example.com/2023/06/28/Springboot/image-20230718025607362.png">
 <meta property="og:image" content="http://example.com/2023/06/28/Springboot/image-20230718182633136.png">
 <meta property="article:published_time" content="2023-06-28T07:02:15.000Z">
-<meta property="article:modified_time" content="2023-07-18T10:26:46.073Z">
+<meta property="article:modified_time" content="2023-07-18T12:39:59.746Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,7 +264,7 @@
         
         
         
-          646 分钟
+          653 分钟
         
       </span>
     
@@ -1279,6 +1279,23 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/user&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addUser</span><span class="hljs-params">(<span class="hljs-meta">@Validated(ValidationGroup1.class)</span> User user, BindingResult result)</span>&#123;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p>如此一来就只会去校验属于group1的注释了，在本次例子中的校验group1就只有name和age。</p>
+<h1 id="应用监控"><a href="#应用监控" class="headerlink" title="应用监控"></a>应用监控</h1><p>先跳一下，因为目前是完全用不着的好像</p>
+<h1 id="编译打包"><a href="#编译打包" class="headerlink" title="编译打包"></a>编译打包</h1><p>Springboot可以使用默认插件配置<code>spring-boot-maven-plugin</code></p>
+<p>该插件拥有5个功能：</p>
+<ul>
+<li>build-info：生成项目的构建信息文件build-info.properties</li>
+<li>repackage：在<code>mvn package</code>执行之后，这个命令再次打包生成可执行的jar，同时<code>mvn package</code>生成的jar重名为<code>*origin</code></li>
+<li>run：这个可以用来运行Spring boot应用。</li>
+<li>start：这个在 <code>mvn integration-test</code> 阶段，进行 <code>Spring Boot</code> 应用生命周期的管理</li>
+<li>stop：这个在 <code>mvn integration-test</code> 阶段，进行 <code>Spring Boot</code> 应用生命周期的管理</li>
+</ul>
+<p>这里功能，默认情况下使用就是 repackage 功能，其他功能要使用，则需要开发者显式配置。</p>
+<p>打包的jar包分为可执行jar和可依赖jar</p>
+<p>默认的生成的为可执行jar，可执行jar不可以被依赖，需要删除mvn的spirng-boot-maven-plugin依赖。</p>
+<p>当然也可以将可执行jar和可依赖jar同时生成，mvn配置如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;build&gt;<br>    &lt;plugins&gt;<br>        &lt;plugin&gt;<br>            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;<br>            &lt;configuration&gt;<br>                &lt;classifier&gt;exec&lt;/classifier&gt;<br>            &lt;/configuration&gt;<br>        &lt;/plugin&gt;<br>    &lt;/plugins&gt;<br>&lt;/build&gt;<br></code></pre></td></tr></table></figure>
+
+<p>exec为可依赖jar，配置中的exec为自动生成的后缀。</p>
 
                 
               </div>
