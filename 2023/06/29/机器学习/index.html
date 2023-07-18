@@ -16,12 +16,12 @@
   <meta name="author" content="星光浮梦">
   <meta name="keywords" content="">
   
-    <meta name="description" content="机器学习基本概念基础定义 定义带有未知数的函数  定义loss函数，输入b,w。该函数的输出值为所拥有的训练集 这些函数是机器自己找出来的，需要自己设定hyperparameters（超参数），期间需要反复移动W。有俩种情况下，会停止一定w  达到了调整次数设定的上限 微分算出来的值刚刚为0   local minima和global minima。在进行gradient descent（梯度下降">
+    <meta name="description" content="前言学习一下机器学习和深度学习，一可以拓展我的认知和对这种前沿技术的了解，二也是因为参加比赛的需求。我学习deep learning和machine learning是通过CS230和李宏毅机器学习。 在这里浅讲一下我对李宏毅的机器学习的认知，我看的是啥都生UP主上传的视频，该组视频我认为应该要分开看，先把2021标头的看了，这样看的连贯性会好一些，然后拓展也是需要看的。至于CS230我也看一些，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习笔记">
 <meta property="og:url" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Isolde">
-<meta property="og:description" content="机器学习基本概念基础定义 定义带有未知数的函数  定义loss函数，输入b,w。该函数的输出值为所拥有的训练集 这些函数是机器自己找出来的，需要自己设定hyperparameters（超参数），期间需要反复移动W。有俩种情况下，会停止一定w  达到了调整次数设定的上限 微分算出来的值刚刚为0   local minima和global minima。在进行gradient descent（梯度下降">
+<meta property="og:description" content="前言学习一下机器学习和深度学习，一可以拓展我的认知和对这种前沿技术的了解，二也是因为参加比赛的需求。我学习deep learning和machine learning是通过CS230和李宏毅机器学习。 在这里浅讲一下我对李宏毅的机器学习的认知，我看的是啥都生UP主上传的视频，该组视频我认为应该要分开看，先把2021标头的看了，这样看的连贯性会好一些，然后拓展也是需要看的。至于CS230我也看一些，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020350804.png">
 <meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020404213.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020431220.png">
 <meta property="og:image" content="http://example.com/2023/06/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20230718020437010.png">
 <meta property="article:published_time" content="2023-06-29T06:50:24.000Z">
-<meta property="article:modified_time" content="2023-07-18T15:41:50.126Z">
+<meta property="article:modified_time" content="2023-07-18T15:59:56.295Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="拓展">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k 字
+          5.6k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          45 分钟
+          47 分钟
         
       </span>
     
@@ -281,7 +281,10 @@
             
               <div class="markdown-body">
                 
-                <h1 id="机器学习基本概念"><a href="#机器学习基本概念" class="headerlink" title="机器学习基本概念"></a>机器学习基本概念</h1><h3 id="基础定义"><a href="#基础定义" class="headerlink" title="基础定义"></a>基础定义</h3><ol>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习一下机器学习和深度学习，一可以拓展我的认知和对这种前沿技术的了解，二也是因为参加比赛的需求。我学习deep learning和machine learning是通过<code>CS230</code>和<code>李宏毅机器学习</code>。</p>
+<p>在这里浅讲一下我对李宏毅的机器学习的认知，我看的是<code>啥都生</code>UP主上传的视频，该组视频我认为应该要分开看，先把2021标头的看了，这样看的连贯性会好一些，然后拓展也是需要看的。至于CS230我也看一些，讲解的比较简短，但总的来说还是全面并精准的，但是由于是英语（本人一听英文就犯困，难绷），所以最后还是去看了李宏毅老师的视频。</p>
+<p>这段仅是个人的理解。</p>
+<h1 id="机器学习基本概念"><a href="#机器学习基本概念" class="headerlink" title="机器学习基本概念"></a>机器学习基本概念</h1><h3 id="基础定义"><a href="#基础定义" class="headerlink" title="基础定义"></a>基础定义</h3><ol>
 <li><p>定义带有未知数的函数</p>
 </li>
 <li><p>定义loss函数，输入b,w。该函数的输出值为所拥有的训练集</p>
