@@ -26,8 +26,16 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230719011235967.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230719011242854.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230719011251537.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025306129.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025313318.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025321214.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025329087.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025335747.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025343585.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025349691.png">
+<meta property="og:image" content="http://example.com/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025429607.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-07-18T17:13:08.667Z">
+<meta property="article:modified_time" content="2023-07-19T18:57:29.446Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          3.9k 字
         
       </span>
     
@@ -235,7 +243,7 @@
         
         
         
-          9 分钟
+          33 分钟
         
       </span>
     
@@ -313,6 +321,67 @@
 <p>npm会下载完一个node_modules（这个巨大无比！！），然后直接使用ws打开即可。</p>
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230719011251537.png" srcset="/img/loading.gif" lazyload alt="image-20230719011251537"></p>
 <p>创建完成！！！</p>
+<h3 id="SPA运行"><a href="#SPA运行" class="headerlink" title="SPA运行"></a>SPA运行</h3><p>可以直接在控制台开启，指令如下：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">npm run dev<br></code></pre></td></tr></table></figure>
+
+<p>可以在edit configuration中进行配置。</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025306129.png" srcset="/img/loading.gif" lazyload alt="image-20230720025306129"></p>
+<p>成功的结果如下：</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025313318.png" srcset="/img/loading.gif" lazyload alt="image-20230720025313318"></p>
+<h3 id="工程代码解析"><a href="#工程代码解析" class="headerlink" title="工程代码解析"></a>工程代码解析</h3><p>所有的东西被app组件代替</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>学习router和vue组件之间的关系</p>
+<h1 id="Vue-cli3构建vue项目"><a href="#Vue-cli3构建vue项目" class="headerlink" title="Vue-cli3构建vue项目"></a>Vue-cli3构建vue项目</h1><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> install -g @vue/cli<br></code></pre></td></tr></table></figure>
+
+<p>报了个错</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">vue create is a Vue CLI <span class="hljs-number">3</span> only command and you are using Vue CLI <span class="hljs-number">2</span>.<span class="hljs-number">9</span>.<span class="hljs-number">6</span>.<br> You may want to run the following to upgrade to Vue CLI <span class="hljs-number">3</span>:<br><br> npm uninstall -g vue-cli<br> npm install -g @vue/cli<br></code></pre></td></tr></table></figure>
+
+<p>因为用了vue-cli2需要先卸载，欧克！</p>
+<p>管理员运行。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">vue create 项目名<br></code></pre></td></tr></table></figure>
+
+<p>目前选项如下：</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025321214.png" srcset="/img/loading.gif" lazyload alt="image-20230720025321214"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> 项目名<br>npm run serve<br></code></pre></td></tr></table></figure>
+
+<p>开始运行了就。</p>
+<p>cli3创建的比2更加简洁明了一些，组件和页面放置的位置也有所不同。</p>
+<h1 id="VHR正式开始"><a href="#VHR正式开始" class="headerlink" title="VHR正式开始"></a>VHR正式开始</h1><p>步骤：前端–&gt;接口</p>
+<h1 id="登录页面"><a href="#登录页面" class="headerlink" title="登录页面"></a>登录页面</h1><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p>本文使用的ElementUI</p>
+<p>前端页面完成结果：</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025329087.png" srcset="/img/loading.gif" lazyload alt="image-20230720025329087"></p>
+<p>问题1：我创建的步骤跟松哥的一致，但是目录有有些差距，创建vue组件的默认代码与松哥的也有所区别。但目前看来还是能用的，先看看。</p>
+<h5 id="处理前端登录事件（表单校验）"><a href="#处理前端登录事件（表单校验）" class="headerlink" title="处理前端登录事件（表单校验）"></a>处理前端登录事件（表单校验）</h5><p>vue组件添加methods</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">submitLogin</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">loginForm</span>.<span class="hljs-title function_">validate</span>(<span class="hljs-function">(<span class="hljs-params">valid</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (valid) &#123;<br>          <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;submit!&#x27;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">$message</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;请输入全部字段&#x27;</span>);<br>          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>      &#125;);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025335747.png" srcset="/img/loading.gif" lazyload alt="image-20230720025335747"></p>
+<h3 id="后端接口"><a href="#后端接口" class="headerlink" title="后端接口"></a>后端接口</h3><h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><p>创建springboot项目，web，mysql Driver，mybatis Driver，Spring Security4个依赖。</p>
+<p>mysql依赖依旧进行修改。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.48<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>再加一个数据库的德鲁伊连接池</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.48<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="mybatisX自动生成代码"><a href="#mybatisX自动生成代码" class="headerlink" title="mybatisX自动生成代码"></a>mybatisX自动生成代码</h6><p>使用MybatisX自动生成mapper的接口和xml以及pojo的model。</p>
+<p>踩坑：看了网上一些教程，然后一直操作不对，总有一些没有的包亦或者是使用的全是mybatis-PLUS的东西，果然学东西不能太囫囵吞枣，最后仔细看完了所有选项，差不多搞出来了mybatis的自动生成。</p>
+<p>但是还是有点怪异，比如都是自带hashcode的等等，明天再研究一下。目前的理解就是，不要选择mybatis3等其他选项基本上全部使用默认选项即可。</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025343585.png" srcset="/img/loading.gif" lazyload alt="image-20230720025343585"></p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025349691.png" srcset="/img/loading.gif" lazyload alt="image-20230720025349691"></p>
+<p>然后base package填写项目的包名，这样生成的mapper和pojo就自动生成在常见的位置了。然后第二张图比较重要，我是直接拿csdn上大佬的图放置的，讲解详情请看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43580824/article/details/126232350?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-8-126232350-blog-123622714.235%5Ev38%5Epc_relevant_sort_base1&spm=1001.2101.3001.4242.5&utm_relevant_index=11">善我的mybatisX插件讲解</a>，不过但是他使用的也是mybatis-plus，我第二章图的选项是自己试出来的，不知道是否有问题，反正目前可以正常使用。然后Lombok也没进行使用、选择。（Spring Boot可以通过引入Lombok来简化Java代码的编写。Lombok是一个Java库，它通过注解来消除Java类中的样板代码，例如getter和setter方法、构造函数等。通过使用Lombok，可以减少代码量，提高代码的可读性和可维护性。）</p>
+<p><mark>简单来说就是不用写getter和setter方法、构造函数等，但松哥没用，我也不知道好不好用怎么用，就先没用</mark></p>
+<p>因为本人喜欢mapper.xml放在resources之中，所以并没有将xml放到java下的mapper，但是还是跟着配置了一下如果放置的白名单。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/resources<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">resource</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/java<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">includes</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.xml<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">includes</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">resource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>（目前也不知道会不会有反作用，先看看，根据我的认知应该是不会有的，因为我觉得这段配置只是让mvn打包的时候，不把java中的xml文件直接跳过，但这样并不会导致原来的那个跳过）</p>
+<p>然后就是application配置，注释掉的代码时之前使用的mysql Driver，但是松哥没有加上，个人认为是使用了德鲁伊连接池的原因（不太明白，目前没有系统地对德鲁伊进行学习）</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">1234</span><br><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql:///vhr?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</span><br><span class="hljs-attr">spring.datasource.type</span>=<span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span><br><span class="hljs-comment">#spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br></code></pre></td></tr></table></figure>
+
+<p>然后再给VhrApplication加上MapperScan包扫描</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@MapperScan(basePackages = <span class="hljs-string">&quot;com.xgfm.vhr.mapper&quot;</span>)</span><br></code></pre></td></tr></table></figure>
+
+<p>最后自己写了一个test，跑了一下，成功运行！yes！</p>
+<p><img src="/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230720025429607.png" srcset="/img/loading.gif" lazyload alt="image-20230720025429607"></p>
 
                 
               </div>
