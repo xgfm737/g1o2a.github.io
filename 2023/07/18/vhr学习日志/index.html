@@ -45,8 +45,10 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724123557391.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724123606898.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724123615928.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200424322.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200430719.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-07-24T04:36:35.089Z">
+<meta property="article:modified_time" content="2023-07-24T12:04:38.253Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -243,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          34k 字
+          36k 字
         
       </span>
     
@@ -254,7 +256,7 @@
         
         
         
-          282 分钟
+          303 分钟
         
       </span>
     
@@ -650,6 +652,32 @@
 <li><p>还有就是日期显示本来是不正确的，后端处理可以使用json的注解来格式化数据。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@JsonFormat(pattern = &quot;yyyy-MM-dd&quot;,timezone = &quot;Asia/ShangHai&quot;)</span><br>    <span class="hljs-keyword">private</span> Date createDate;<br></code></pre></td></tr></table></figure></li>
 </ol>
+<h4 id="职位修改"><a href="#职位修改" class="headerlink" title="职位修改"></a>职位修改</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-dialog<br>      title=&quot;修改职位&quot;<br>      :visible.sync=&quot;dialogVisible&quot;<br>      width=&quot;30%&quot;&gt;<br>    &lt;div&gt;<br>      &lt;el-tag&gt;职位名称&lt;/el-tag&gt;<br>      &lt;el-input class=&quot;updatePosInput&quot; size=&quot;small&quot; v-model=&quot;updatePos.name&quot;&gt;&lt;/el-input&gt;<br>    &lt;/div&gt;<br>    &lt;span slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;<br>    &lt;el-button size=&quot;small&quot; @click=&quot;dialogVisible = false&quot;&gt;取 消&lt;/el-button&gt;<br>    &lt;el-button size=&quot;small&quot; type=&quot;primary&quot; @click=&quot;doUpdate&quot;&gt;确 定&lt;/el-button&gt;<br>  &lt;/span&gt;<br>  &lt;/el-dialog&gt;<br></code></pre></td></tr></table></figure>
+
+<p>直接添加对应的doUpdate的js方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">doUpdate</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">putRequest</span>(<span class="hljs-string">&quot;/system/basic/pos/&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">updatePos</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>        <span class="hljs-keyword">if</span> (resp)&#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initPositions</span>();<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">updatePos</span>.<span class="hljs-property">name</span>=<span class="hljs-string">&#x27;&#x27;</span>;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">dialogVisible</span>=<span class="hljs-literal">false</span>;<br>        &#125;<br>      &#125;)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>图如下：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200424322.png" srcset="/img/loading.gif" lazyload alt="image-20230724200424322"></p>
+<h4 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h4><p>首先编写删除接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@DeleteMapping(&quot;/&quot;)</span><br>    <span class="hljs-keyword">public</span> RespBean <span class="hljs-title function_">deletePositionsByIds</span><span class="hljs-params">(Integer[] ids)</span>&#123;<br>        <span class="hljs-keyword">if</span> (positionService.deletePositionsByIds(ids)==ids.length)&#123;<br>            <span class="hljs-keyword">return</span> RespBean.ok(<span class="hljs-string">&quot;删除成功！！&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> RespBean.error(<span class="hljs-string">&quot;删除失败！！&quot;</span>);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个因为是数组，第一次使用传回来数组的格式，所以把接口和mapper映射都放一下吧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Integer <span class="hljs-title function_">deletePositionsByIds</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;ids&quot;)</span> Integer[] ids)</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deletePositionsByIds&quot;</span>&gt;</span><br>        delete from position where id in<br>        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;ids&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span>&gt;</span><br>            #&#123;id&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>再是前端删除页面，首先看ELUI的指南找到批量勾选的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">@selection-change=&quot;handleSelectionChange&quot;<br><br><br>handleSelectionChange(val)&#123;<br>      this.multipleSelection=val;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后编写方法处理数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">deleteMany</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.$confirm(<span class="hljs-string">&#x27;此操作将永久删除[&#x27;</span>+<span class="hljs-variable language_">this</span>.<span class="hljs-property">multipleSelection</span>.<span class="hljs-property">length</span>+<span class="hljs-string">&#x27;]个职位, 是否继续?&#x27;</span>, <span class="hljs-string">&#x27;提示&#x27;</span>, &#123;<br>        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&#x27;确定&#x27;</span>,<br>        <span class="hljs-attr">cancelButtonText</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,<br>        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;warning&#x27;</span><br>      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">let</span> ids=<span class="hljs-string">&#x27;?&#x27;</span>;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">multipleSelection</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;<br>          ids+=<span class="hljs-string">&#x27;ids=&#x27;</span>+item.<span class="hljs-property">id</span>+<span class="hljs-string">&#x27;&amp;&#x27;</span>;<br>        &#125;)<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">deleteRequest</span>(<span class="hljs-string">&quot;/system/basic/pos/&quot;</span>+ids).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>          <span class="hljs-keyword">if</span> (resp)&#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initPositions</span>();<br>          &#125;<br>        &#125;)<br>      &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">this</span>.$message(&#123;<br>          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;info&#x27;</span>,<br>          <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;已取消删除&#x27;</span><br>        &#125;);<br>      &#125;);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>为了实现无勾选情况下，批量删除不可点击的情况，给批量删除添加disabled并且绑定v-model处理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-button type=&quot;danger&quot; size=&quot;small&quot; style=&quot;margin-top: 10px&quot; :disabled=&quot;multipleSelection.length==0&quot;<br>    @click=&quot;deleteMany&quot;&gt;批量删除&lt;/el-button&gt;<br></code></pre></td></tr></table></figure>
+
+<p>成果图如下：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200430719.png" srcset="/img/loading.gif" lazyload alt="image-20230724200430719"></p>
 
                 
               </div>
