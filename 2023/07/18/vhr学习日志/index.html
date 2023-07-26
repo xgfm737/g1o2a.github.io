@@ -47,8 +47,12 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724123615928.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200424322.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200430719.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233619398.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230222105.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230240290.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233718235.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-07-24T12:04:38.253Z">
+<meta property="article:modified_time" content="2023-07-26T15:49:22.721Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -245,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          36k 字
+          40k 字
         
       </span>
     
@@ -256,7 +260,7 @@
         
         
         
-          303 分钟
+          331 分钟
         
       </span>
     
@@ -678,6 +682,30 @@
 
 <p>成果图如下：</p>
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230724200430719.png" srcset="/img/loading.gif" lazyload alt="image-20230724200430719"></p>
+<h4 id="添加enabled字段"><a href="#添加enabled字段" class="headerlink" title="添加enabled字段"></a>添加enabled字段</h4><p>在el-table中添加如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-table-column<br>          label=&quot;是否启用&quot;&gt;<br>        &lt;template slot-scope=&quot;scope&quot;&gt;<br>          &lt;el-tag type=&quot;success&quot; v-if=&quot;scope.row.enabled&quot;&gt;已启用&lt;/el-tag&gt;<br>          &lt;el-tag type=&quot;danger&quot; v-else&gt;未启用&lt;/el-tag&gt;<br>        &lt;/template&gt;<br>      &lt;/el-table-column&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后将修改也做一下调整，使其也能够修改是否启用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-dialog<br>      title=&quot;修改职位&quot;<br>      :visible.sync=&quot;dialogVisible&quot;<br>      width=&quot;30%&quot;&gt;<br>    &lt;div&gt;<br>      &lt;div&gt;<br>        &lt;el-tag&gt;职位名称&lt;/el-tag&gt;<br>        &lt;el-input class=&quot;updatePosInput&quot; size=&quot;small&quot; v-model=&quot;updatePos.name&quot;&gt;&lt;/el-input&gt;<br>      &lt;/div&gt;<br>      &lt;div&gt;<br>        &lt;div&gt;<br>          &lt;el-tag&gt;是否启用&lt;/el-tag&gt;<br>          &lt;el-switch<br>              v-model=&quot;updatePos.enabled&quot;<br>              active-text=&quot;启用&quot;<br>              inactive-text=&quot;禁用&quot;&gt;<br>          &lt;/el-switch&gt;<br>        &lt;/div&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>    &lt;span slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;<br>    &lt;el-button size=&quot;small&quot; @click=&quot;dialogVisible = false&quot;&gt;取 消&lt;/el-button&gt;<br>    &lt;el-button size=&quot;small&quot; type=&quot;primary&quot; @click=&quot;doUpdate&quot;&gt;确 定&lt;/el-button&gt;<br>  &lt;/span&gt;<br>  &lt;/el-dialog&gt;<br></code></pre></td></tr></table></figure>
+
+<p>成功图如下：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233619398.png" srcset="/img/loading.gif" lazyload alt="image-20230726233619398"></p>
+<h3 id="职称管理"><a href="#职称管理" class="headerlink" title="职称管理"></a>职称管理</h3><p>技术点和职位管理基本一致。</p>
+<h4 id="前端页面设计"><a href="#前端页面设计" class="headerlink" title="前端页面设计"></a>前端页面设计</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>&lt;div&gt;<br>  &lt;div&gt;<br>    &lt;el-input size=&quot;small&quot; v-model=&quot;jl.name&quot; style=&quot;width: 300px;&quot; prefix-icon=&quot;el-icon-plus&quot; place-holder=&quot;添加职称...&quot;&gt;<br>    &lt;/el-input&gt;<br>    &lt;el-select v-model=&quot;jl.titleLevel&quot; placeholder=&quot;职称等级&quot; size=&quot;small&quot; style=&quot;margin-left: 5px;margin-right: 5px&quot;&gt;<br>      &lt;el-option<br>          v-for=&quot;item in titleLevels&quot;<br>          :key=&quot;item&quot;<br>          :label=&quot;item&quot;<br>          :value=&quot;item&quot;&gt;<br>      &lt;/el-option&gt;<br>    &lt;/el-select&gt;<br>    &lt;el-button icon=&quot;el-icon-plus&quot; type=&quot;primary&quot; size=&quot;small&quot;&gt;添加&lt;/el-button&gt;<br>  &lt;/div&gt;<br>  &lt;div style=&quot;margin-top: 10px;&quot;&gt;<br>    &lt;el-table<br>        :data=&quot;jls&quot;<br>        border<br>        stripe<br>        style=&quot;width: 80%;&quot;&gt;<br>      &lt;el-table-column<br>          prop=&quot;id&quot;<br>          label=&quot;编号&quot;<br>          width=&quot;55&quot;&gt;<br>      &lt;/el-table-column&gt;<br>      &lt;el-table-column<br>          prop=&quot;name&quot;<br>          label=&quot;职称名称&quot;<br>          width=&quot;160&quot;&gt;<br>      &lt;/el-table-column&gt;<br>      &lt;el-table-column<br>          prop=&quot;titleLevel&quot;<br>          label=&quot;职称级别&quot;&gt;<br>      &lt;/el-table-column&gt;<br>      &lt;el-table-column<br>          prop=&quot;createDate&quot;<br>          label=&quot;创建时间&quot;&gt;<br>      &lt;/el-table-column&gt;<br>      &lt;el-table-column<br>          label=&quot;操作&quot;&gt;<br>        &lt;template slot-scope=&quot;scope&quot;&gt;<br>          &lt;el-button size=&quot;small&quot;&gt;编辑&lt;/el-button&gt;<br>          &lt;el-button size=&quot;small&quot; type=&quot;danger&quot;&gt;删除&lt;/el-button&gt;<br>        &lt;/template&gt;<br>      &lt;/el-table-column&gt;<br>    &lt;/el-table&gt;<br><br>  &lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后其中职称选择的select可以写死，因为后端也是固定的。然后在js中编写数据即可。</p>
+<h4 id="后端接口设计"><a href="#后端接口设计" class="headerlink" title="后端接口设计"></a>后端接口设计</h4><p>总体上跟前面前端接口设计一样，就不加以赘述了。</p>
+<p>不过这里犯了一个错误，在mapper中进行大小写替换的时候没有全部替换掉，导致报500错，并且在控制台出现如下报错信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs terminal">org.apache.ibatis.reflection.ReflectionException: There is no getter for property named &#x27;titlelevel&#x27; in &#x27;class com.xgfm.vhr.pojo.JobLevel&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>然后我还一直在排查JobLevel中的大小写，后来才发现原来是mapper中的没有进行替换。</p>
+<h4 id="前后端对接-2"><a href="#前后端对接-2" class="headerlink" title="前后端对接"></a>前后端对接</h4><p>前端比较不同的是使用switch开关，别的都比较一致，所以就直接放成功图：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230222105.png" srcset="/img/loading.gif" lazyload alt="image-20230726230222105"></p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230240290.png" srcset="/img/loading.gif" lazyload alt="image-20230726230240290"></p>
+<h4 id="批量删除-1"><a href="#批量删除-1" class="headerlink" title="批量删除"></a>批量删除</h4><p>批量删除的后端编写也和之前的相类似，需要注意的还是那句话<mark>批量删除不要去在service方法里面加个for循环，然后遍历一个个删，要执行SQL全部同时移除</mark></p>
+<p>别的跟之前一模一样基本上，不赘述了</p>
+<p>放张图：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233718235.png" srcset="/img/loading.gif" lazyload alt="image-20230726233718235"></p>
 
                 
               </div>
