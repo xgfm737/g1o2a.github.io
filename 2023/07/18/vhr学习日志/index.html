@@ -51,8 +51,13 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230222105.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726230240290.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233718235.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230727235728126.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728164737869.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728174041027.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728180803735.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728193319546.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-07-26T15:49:22.721Z">
+<meta property="article:modified_time" content="2023-07-28T12:27:31.275Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          40k 字
+          44k 字
         
       </span>
     
@@ -260,7 +265,7 @@
         
         
         
-          331 分钟
+          366 分钟
         
       </span>
     
@@ -706,6 +711,62 @@
 <p>别的跟之前一模一样基本上，不赘述了</p>
 <p>放张图：</p>
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230726233718235.png" srcset="/img/loading.gif" lazyload alt="image-20230726233718235"></p>
+<h3 id="权限组"><a href="#权限组" class="headerlink" title="权限组"></a>权限组</h3><h4 id="前端页面设计-1"><a href="#前端页面设计-1" class="headerlink" title="前端页面设计"></a>前端页面设计</h4><p>首先整理一下业务逻辑。权限组用于设计一个角色拥有访问哪些菜单的权限。</p>
+<p>角色及其权限列表使用collapseUI实现，</p>
+<p>Collapse 折叠面板，通过折叠面板收纳内容区域。</p>
+<p>然后再添加上input和按钮即可，权限角色需要以ROLE_开头（安全管理中的要求），所以需要加前缀。</p>
+<p>前端成果图：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230727235728126.png" srcset="/img/loading.gif" lazyload alt="image-20230727235728126"></p>
+<p>其中collapse并未进行修改，因为需要根据后端的数据进行动态展示，等后端写好再进行更新。</p>
+<h4 id="后端接口设计及前后端对接"><a href="#后端接口设计及前后端对接" class="headerlink" title="后端接口设计及前后端对接"></a>后端接口设计及前后端对接</h4><p>正常的编写一个getAllRoles的接口即可。按照controller-service-mapper的步骤来，然后使用postman测试接口。</p>
+<p>测试成功后到前端使用for循环展示。</p>
+<p>collapse内的东西使用卡片展示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-collapse accordion&gt;<br>      &lt;el-collapse-item :title=&quot;r.nameZh&quot; :name=&quot;r.id&quot; v-for=&quot;(r,index) in roles&quot; :key=&quot;index&quot;&gt;<br>        &lt;el-card class=&quot;box-card&quot;&gt;<br>          &lt;div slot=&quot;header&quot; class=&quot;clearfix&quot;&gt;<br>            &lt;span&gt;可访问的资源&lt;/span&gt;<br>            &lt;el-button style=&quot;float: right; padding: 3px 0;color: red;&quot; type=&quot;text&quot; icon=&quot;el-icon-delete&quot;&gt;&lt;/el-button&gt;<br>          &lt;/div&gt;<br>          &lt;div v-for=&quot;o in 4&quot; :key=&quot;o&quot; class=&quot;text item&quot;&gt;<br>            &#123;&#123;&#x27;列表内容 &#x27; + o &#125;&#125;<br>          &lt;/div&gt;<br>        &lt;/el-card&gt;<br>      &lt;/el-collapse-item&gt;<br>    &lt;/el-collapse&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728164737869.png" srcset="/img/loading.gif" lazyload alt="image-20230728164737869"></p>
+<p>其中的各自权限还需要再编写接口再进行对接。</p>
+<p>后端再编写menuService的方法注入到PermissController之中。其中采用的SQL方法是全部查出来，因为这里的menu基本上是不会变动的，如果需要编写动态的menu则需要编写递归的SQL，来查询出相对应的符合条件的SQL语句。</p>
+<p>使用ELUI中的Tree树形控件将各自权限展示在前端，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-collapse accordion @change=&quot;change&quot;&gt;<br>      &lt;el-collapse-item :title=&quot;r.nameZh&quot; :name=&quot;r.id&quot; v-for=&quot;(r,index) in roles&quot; :key=&quot;index&quot;&gt;<br>        &lt;el-card class=&quot;box-card&quot;&gt;<br>          &lt;div slot=&quot;header&quot; class=&quot;clearfix&quot;&gt;<br>            &lt;span&gt;可访问的资源&lt;/span&gt;<br>            &lt;el-button style=&quot;float: right; padding: 3px 0;color: red;&quot; type=&quot;text&quot; icon=&quot;el-icon-delete&quot;&gt;&lt;/el-button&gt;<br>          &lt;/div&gt;<br>          &lt;div&gt;<br>            &lt;el-tree :data=&quot;allmenus&quot; :props=&quot;defaultProps&quot; show-checkbox&gt;&lt;/el-tree&gt;<br>          &lt;/div&gt;<br>        &lt;/el-card&gt;<br>      &lt;/el-collapse-item&gt;<br>    &lt;/el-collapse&gt;<br></code></pre></td></tr></table></figure>
+
+<p>目前效果：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728174041027.png" srcset="/img/loading.gif" lazyload alt="image-20230728174041027"></p>
+<p>现在缺少一个添加预选中的功能。</p>
+<h5 id="添加预选功能"><a href="#添加预选功能" class="headerlink" title="添加预选功能"></a>添加预选功能</h5><p>如果写死的话代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-tree :data=&quot;allmenus&quot; :props=&quot;defaultProps&quot; show-checkbox node-key=&quot;id&quot; :default-checked-keys=&quot;[7,8,9]&quot;&gt;&lt;/el-tree&gt;<br></code></pre></td></tr></table></figure>
+
+<p>但是因为每个角色的权限是不同的那么default-checked-keys中的数字就需要根据后端提供的数据进行动态的修改了。</p>
+<p>后端接口需要前端传回rid，然后才能进行下一步操作</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getMidsByRid&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;java.lang.Integer&quot;</span>&gt;</span><br>        select mid from menu_role where rid=#&#123;rid&#125;;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后将rid数组传回前端。</p>
+<p>js的前端方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">change</span>(<span class="hljs-params">rid</span>)&#123;<br>      <span class="hljs-keyword">if</span> (rid)&#123;<span class="hljs-comment">//这里是打开rid的时候</span><br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initAllMenus</span>();<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initSelectedMenus</span>(rid);<br>      &#125;<br>    &#125;,<br>    <span class="hljs-title function_">initAllMenus</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getRequest</span>(<span class="hljs-string">&quot;/system/basic/permiss/menus&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>        <span class="hljs-keyword">if</span> (resp)&#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">allmenus</span>=resp;<br>        &#125;<br>      &#125;)<br>    &#125;,<br>    <span class="hljs-title function_">initSelectedMenus</span>(<span class="hljs-params">rid</span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getRequest</span>(<span class="hljs-string">&quot;/system/basic/permiss/mids/&quot;</span>+rid).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>        <span class="hljs-keyword">if</span> (resp)&#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">selectedMenus</span>=resp;<br>        &#125;<br>      &#125;)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过这3个方法来完成数据的刷新，其中的change方法是tree树形控件自带的点击事件。</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728180803735.png" srcset="/img/loading.gif" lazyload alt="image-20230728180803735"></p>
+<p>这样就完成了添加预选的功能。</p>
+<h5 id="添加角色权限修改的功能"><a href="#添加角色权限修改的功能" class="headerlink" title="添加角色权限修改的功能"></a>添加角色权限修改的功能</h5><p>使用tree树形控件的getCheckedKeys方法来获取到被选择的节点。</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728193319546.png" srcset="/img/loading.gif" lazyload alt="image-20230728193319546"></p>
+<p>因为我们仅仅需要获取叶子节点的keys即可，一级目录的作用仅仅是用来分类的而已，所以在这需要添加参数true。</p>
+<p>那么前端的操作就到此结束了。</p>
+<p>后端操作需要将前端传过来的数组全部更新掉，那么操作就是根据rid把已经有的id全部删除掉，然后根据传回来的权限的数组进行全部插入，即可完成修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">updateMenuRole</span><span class="hljs-params">(Integer rid, Integer[] mids)</span> &#123;<br>        menuRoleMapper.deleteByRid(rid);<br>        Integer result=menuRoleMapper.insertRecord(rid,mids);<br>        <span class="hljs-keyword">return</span> result==mids.length;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个是service的方法，@Transactional注解用于发生错误时回滚事务，避免出现无法添加但是已经删除的数据错误。</p>
+<p>前端对接：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">doUpdate</span>(<span class="hljs-params">rid,index</span>)&#123;<br>      <span class="hljs-keyword">let</span> tree = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">tree</span>[index];<br>      <span class="hljs-keyword">let</span> selectedKeys = tree.<span class="hljs-title function_">getCheckedKeys</span>(<span class="hljs-literal">true</span>);<br>      <span class="hljs-keyword">let</span> url=<span class="hljs-string">&#x27;/system/basic/permiss/?rid=&#x27;</span>+rid;<br>      selectedKeys.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span>=&gt;</span>&#123;<br>        url+=<span class="hljs-string">&#x27;&amp;mids=&#x27;</span>+key;<br>      &#125;)<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">putRequest</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>        <span class="hljs-keyword">if</span> (resp)&#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initRoles</span>();<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">activeName</span>=-<span class="hljs-number">1</span>;<br>        &#125;<br>      &#125;)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>编写对应的js方法即可，然后就是每次权限修改完成后能够自动跳转回到最开始的状态，需要给collapse绑定model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-collapse accordion @change=&quot;change&quot; v-model=&quot;activeName&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>activeName默认值设置为-1，即都不打开，更新完的时候再将activeName设置成-1即可。</p>
+<h4 id="BUG发现"><a href="#BUG发现" class="headerlink" title="BUG发现"></a><mark>BUG发现</mark></h4><p>发现一个bug，但是不知道是不是松哥后面会处理的，而且我的班长的blog也没有说这个bug</p>
+<p>发现一个这样写的bug，松哥可能也没发现，也可能后面进行处理了，就是全部不选的时候后端会报错，我自己看了一下，这是因为如果全部不选的话，mids数组为空，那么后端的插入代码就无法运行了。</p>
+<p>然后我就把后端的代码进行了一下修改，修改成如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">updateMenuRole</span><span class="hljs-params">(Integer rid, Integer[] mids)</span> &#123;<br>        menuRoleMapper.deleteByRid(rid);<br>        Integer result=-<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (mids!=<span class="hljs-literal">null</span>)&#123;<br>            result=menuRoleMapper.insertRecord(rid,mids);<br>            <span class="hljs-keyword">return</span> result==mids.length;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是这样好像也有问题，如果前端mids啥也没传回来的话（mids数据丢失的话），还是会正常运行，直接删光权限。</p>
 
                 
               </div>
