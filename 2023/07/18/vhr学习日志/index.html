@@ -57,8 +57,10 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728180803735.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230728193319546.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230729011348905.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230730214349976.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230730214359363.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-07-28T17:14:34.561Z">
+<meta property="article:modified_time" content="2023-07-30T13:45:12.259Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          45k 字
+          47k 字
         
       </span>
     
@@ -266,7 +268,7 @@
         
         
         
-          377 分钟
+          392 分钟
         
       </span>
     
@@ -780,6 +782,40 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">deleteRole</span>(<span class="hljs-params">role</span>)&#123;<br>      <span class="hljs-variable language_">this</span>.$confirm(<span class="hljs-string">&#x27;此操作将永久删除[&#x27;</span>+role.<span class="hljs-property">nameZh</span>+<span class="hljs-string">&#x27;]角色, 是否继续?&#x27;</span>, <span class="hljs-string">&#x27;提示&#x27;</span>, &#123;<br>        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&#x27;确定&#x27;</span>,<br>        <span class="hljs-attr">cancelButtonText</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,<br>        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;warning&#x27;</span><br>      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">deleteRequest</span>(<span class="hljs-string">&quot;/system/basic/permiss/role/&quot;</span>+role.<span class="hljs-property">id</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>          <span class="hljs-keyword">if</span> (resp)&#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initRoles</span>();<br>          &#125;<br>        &#125;)<br>      &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">this</span>.$message(&#123;<br>          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;info&#x27;</span>,<br>          <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;已取消删除&#x27;</span><br>        &#125;);<br>      &#125;);<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230729011348905.png" srcset="/img/loading.gif" lazyload alt="image-20230729011348905"></p>
+<h3 id="登录问题解决"><a href="#登录问题解决" class="headerlink" title="登录问题解决"></a>登录问题解决</h3><p>如果后端服务器重启之后，前端页面依旧可以操作，但是session已经失效（或者默认30分钟之后，session过期），无法操作，500错误。</p>
+<p>首先在SecurityConfig中添加状态码回应：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">response.setStatus(<span class="hljs-number">401</span>);<br></code></pre></td></tr></table></figure>
+
+<p>然后在api.js中进行处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>==<span class="hljs-number">401</span>)&#123;<br>        <span class="hljs-title class_">Message</span>.<span class="hljs-title function_">error</span>(&#123;<span class="hljs-attr">message</span>:<span class="hljs-string">&#x27;尚未登陆，请登录&#x27;</span>&#125;)<br>        router.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;/&#x27;</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>设置当状态码为401时跳转回初始页面。</p>
+<h3 id="部门管理"><a href="#部门管理" class="headerlink" title="部门管理"></a>部门管理</h3><p>这次从后端接口开始写，因为部门管理是动态的，并且修改复杂，而前端也是使用树形控件进行显示。并且使用json获得全部数据显示，而不是懒加载。</p>
+<h4 id="全部数据查询显示后端接口"><a href="#全部数据查询显示后端接口" class="headerlink" title="全部数据查询显示后端接口"></a>全部数据查询显示后端接口</h4><p>为了能够一次获得全部数据的json，在后端接口会使用递归进行处理。</p>
+<p>使用递归是因为比较简单，并且部门一般来说不会太多。如果部门实在过多，导致递归过于浪费资源，那么就使用懒加载就不会有这种问题，但是会导致前端比较麻烦。</p>
+<p>进行pojo类的属性名调整的时候，发现idea自动设置的isParent字段的get和set方法名为xxxParent，导致mapper.xml中找不到isParent属性了，所以需要对get和set方法进行一下处理。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;DepartmentWithChildren&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.xgfm.vhr.pojo.Department&quot;</span> <span class="hljs-attr">extends</span>=<span class="hljs-string">&quot;BaseResultMap&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;children&quot;</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">&quot;com.xgfm.vhr.pojo.Department&quot;</span> <span class="hljs-attr">select</span>=<span class="hljs-string">&quot;com.xgfm.vhr.mapper.DepartmentMapper.getAllDepartmentsByParentId&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>就是这个collection标签select没怎么用过，和懒加载有关。放一下。</p>
+<p>别的都和其他一样从controller到service到mapper正常编写即可。</p>
+<h4 id="数据查询显示前端设计与对接"><a href="#数据查询显示前端设计与对接" class="headerlink" title="数据查询显示前端设计与对接"></a>数据查询显示前端设计与对接</h4><p>依旧使用tree控件，再说一下defaultProps</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">defaultProps</span>: &#123;<br>        <span class="hljs-attr">children</span>: <span class="hljs-string">&#x27;children&#x27;</span>,<br>        <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;name&#x27;</span><br>      &#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里children是子树的节点名，label是自己的节点名。</p>
+<p>这个属性可以让ELUI知道如何排序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">watch</span>: &#123;<br>    <span class="hljs-title function_">filterText</span>(<span class="hljs-params">val</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">tree</span>.<span class="hljs-title function_">filter</span>(val);<br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>添加的新的方法。</p>
+<p>watch，监控器，当filterText发生变化，其中的代码就会自动执行。this.$refs.tree.filter(val);用于获取树形控件，并调用其中的过滤的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-tree<br>      :data=&quot;deps&quot;<br>      :props=&quot;defaultProps&quot;<br>      :filter-node-method=&quot;filterNode&quot;<br>      ref=&quot;tree&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到过滤方法为filterNode</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">filterNode</span>(<span class="hljs-params">value, data</span>) &#123;<br>      <span class="hljs-keyword">if</span> (!value) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>      <span class="hljs-keyword">return</span> data.<span class="hljs-property">label</span>.<span class="hljs-title function_">indexOf</span>(value) !== -<span class="hljs-number">1</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中的label需要修改为name,原因是defaultProps中定义的名称。这个方法是进行遍历并且返回值为true则保留，false则剔除，data.label.indexOf(value)是指data.label.index中不包含value则为-1。</p>
+<p>成果图：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230730214349976.png" srcset="/img/loading.gif" lazyload alt="image-20230730214349976"></p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230730214359363.png" srcset="/img/loading.gif" lazyload alt="image-20230730214359363"></p>
 
                 
               </div>
