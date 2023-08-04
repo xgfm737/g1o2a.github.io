@@ -64,7 +64,7 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230802184459888.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230802215553561.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-08-02T13:56:58.988Z">
+<meta property="article:modified_time" content="2023-08-02T17:27:47.888Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          52k 字
+          53k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          434 分钟
+          444 分钟
         
       </span>
     
@@ -873,6 +873,16 @@
 
 <p>成果图展示：</p>
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230802215553561.png" srcset="/img/loading.gif" lazyload alt="image-20230802215553561"></p>
+<h1 id="操作员管理"><a href="#操作员管理" class="headerlink" title="操作员管理"></a>操作员管理</h1><h3 id="获取Hr后端接口设计"><a href="#获取Hr后端接口设计" class="headerlink" title="获取Hr后端接口设计"></a>获取Hr后端接口设计</h3><p>编写HrController中的getAllHrs方法，因为前端页面显示不需要显示自己的职位等其他操作，所以需要通过SpringSecurity来将获取到自己的id，并且将自己排除在外。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Hr&gt; <span class="hljs-title function_">getAllHrs</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> hrMapper.getAllHrs(HrUtils.getCurrentHr().getId());<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>并且编写工具类HrUtils</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HrUtils</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Hr <span class="hljs-title function_">getCurrentHr</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> ((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后编写SQL语句。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;HrWithRoles&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.xgfm.vhr.pojo.Hr&quot;</span> <span class="hljs-attr">extends</span>=<span class="hljs-string">&quot;BaseResultMap&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;roles&quot;</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">&quot;com.xgfm.vhr.pojo.Role&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;rid&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;rname&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span>/&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;rnameZh&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;nameZh&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getAllHrs&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;HrWithRoles&quot;</span>&gt;</span><br>            SELECT<br>    	hr.id,<br>    	hr. NAME,<br>    	hr.phone,<br>    	hr.telephone,<br>    	hr.address,<br>    	hr.enabled,<br>    	hr.username,<br>    	hr.userface,<br>    	hr.remark,<br>    	r.id AS rid,<br>    	r. NAME AS rname,<br>    	r.nameZh AS rnameZh<br>    FROM<br>    	hr<br>    LEFT JOIN hr_role hrr ON hr.id = hrr.hrid<br>    LEFT JOIN role r ON hrr.rid = r.id<br>    WHERE<br>    	hr.id != #&#123;hrid&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>完成后端接口，使用postman进行测试。</p>
 
                 
               </div>
