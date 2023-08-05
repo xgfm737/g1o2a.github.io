@@ -64,8 +64,11 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230802184459888.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230802215553561.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230804232159189.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805234419261.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232513933.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232823375.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-08-04T16:00:06.217Z">
+<meta property="article:modified_time" content="2023-08-05T15:45:32.192Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          56k 字
+          58k 字
         
       </span>
     
@@ -273,7 +276,7 @@
         
         
         
-          465 分钟
+          483 分钟
         
       </span>
     
@@ -902,6 +905,35 @@
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">org.apache.ibatis.reflection.ReflectionException: <span class="hljs-title">Illegal</span> <span class="hljs-title">overloaded</span> <span class="hljs-title">getter</span> <span class="hljs-title">method</span> <span class="hljs-title">with</span> <span class="hljs-title">ambiguous</span> <span class="hljs-title">type</span> <span class="hljs-title">for</span> <span class="hljs-title">property</span> &#x27;<span class="hljs-title">enabled</span>&#x27; <span class="hljs-title">in</span> <span class="hljs-title">class</span> &#x27;<span class="hljs-title">com.xgfm.vhr.pojo.Hr</span>&#x27;. <span class="hljs-title">This</span> <span class="hljs-title">breaks</span> <span class="hljs-title">the</span> <span class="hljs-title">JavaBeans</span> <span class="hljs-title">specification</span> <span class="hljs-title">and</span> <span class="hljs-title">can</span> <span class="hljs-title">cause</span> <span class="hljs-title">unpredictable</span> <span class="hljs-title">results</span>.</span><br></code></pre></td></tr></table></figure>
 
 <p>这说的是Hr类中的getEnabled方法过多，由于存在多个重载的getter方法，且这些方法具有模糊的返回类型，违反了JavaBeans规范。然后我查看了一下，是因为一个get方法是bean生成的，另一个是因为继承UserDetails接口（安全管理的东西）后重写的，二者虽然不是同一个方法，但是都被认为是getter方法，导致重复，报错。只要把bean自动生成删掉即可。</p>
+<h3 id="操作员角色更新"><a href="#操作员角色更新" class="headerlink" title="操作员角色更新"></a>操作员角色更新</h3><p>更新用户属于哪些角色，例如部门经理，培训主管等。</p>
+<p>弹出框使用click激活的el-Popover弹出框。</p>
+<p>并在弹出框上添加select选择器的下拉框实现可用角色的展示。</p>
+<p>在前端定义initRoles的方法来获取到roles的数据，并且使用弹出框的show事件来触发initRoles。</p>
+<p>并且绑定弹出框的hide事件（关闭事件）来实现前端数据的传递。</p>
+<p>传递数据也使用跟权限组相类似的思路，即先根据该人的id删除全部的记录，然后根据传过来的rid数组重新添加所有的角色身份。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;el-popover<br>                @show=&quot;showPop(hr)&quot;<br>                @hide=&quot;hidePop(hr)&quot;<br>                placement=&quot;right&quot;<br>                title=&quot;角色列表&quot;<br>                width=&quot;200&quot;<br>                trigger=&quot;click&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>后端接口设计：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">updateHrRoles</span><span class="hljs-params">(Integer hrid, Integer[] rids)</span> &#123;<br>        hrRoleMapper.deleteByHrid(hrid);<br>        <span class="hljs-keyword">return</span> hrRoleMapper.addRole(hrid,rids)==rids.length;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>添加事务的注解，不过我觉得这里如果把一个人的角色全部移除，还是会报空指针异常，先不改，后面试一下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addRole&quot;</span>&gt;</span><br>        insert into hr_role (hrid,rid) values<br>        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;rids&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;rid&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>            (#&#123;hrid&#125;,#&#123;rid&#125;)<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteByHrid&quot;</span>&gt;</span><br>        delete from hr_role where hrid=#&#123;hrid&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>前后端对接：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">hidePop</span>(<span class="hljs-params">hr</span>)&#123;<br>      <span class="hljs-keyword">let</span> roles=[];<br>      <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(roles,hr.<span class="hljs-property">roles</span>);<br>      <span class="hljs-keyword">let</span> flag=<span class="hljs-literal">false</span>;<br>      <span class="hljs-keyword">if</span> (roles.<span class="hljs-property">length</span>!=<span class="hljs-variable language_">this</span>.<span class="hljs-property">selectedRoles</span>.<span class="hljs-property">length</span>)&#123;<br>        flag=<span class="hljs-literal">true</span>;<br>      &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;roles.<span class="hljs-property">length</span>;i++)&#123;<br>          <span class="hljs-keyword">let</span> role=roles[i];<br>          <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-variable language_">this</span>.<span class="hljs-property">selectedRoles</span>.<span class="hljs-property">length</span>;j++)&#123;<br>            <span class="hljs-keyword">let</span> sr=<span class="hljs-variable language_">this</span>.<span class="hljs-property">selectedRoles</span>[j];<br>            <span class="hljs-keyword">if</span> (role.<span class="hljs-property">id</span>==sr)&#123;<br>              roles.<span class="hljs-title function_">splice</span>(i,<span class="hljs-number">1</span>);<br>              i--;<br>              <span class="hljs-keyword">break</span>;<br>            &#125;<br>          &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (roles.<span class="hljs-property">length</span>!=<span class="hljs-number">0</span>)&#123;<br>          flag=<span class="hljs-literal">true</span>;<br>        &#125;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (flag)&#123;<br>        <span class="hljs-keyword">let</span> url=<span class="hljs-string">&#x27;/system/hr/role?hrid=&#x27;</span>+hr.<span class="hljs-property">id</span>;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">selectedRoles</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">sr</span>=&gt;</span>&#123;<br>          url+=<span class="hljs-string">&#x27;&amp;rids=&#x27;</span>+sr;<br>        &#125;)<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">putRequest</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>          <span class="hljs-keyword">if</span> (resp)&#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initHrs</span>();<br>          &#125;<br>        &#125;)<br>      &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>编写js方法，其中有一个问题是如果什么都不做，也会说更新成功，这是不应该的，这里做了一下对比，使用嵌套for循环一一对照roles和selectRoles数组是否不同，相同则剔除roles中的该部分，最后如果roles全部剔除了，说明没有做任何改变，没有全部剔除，则需要修改flag为true，因为这说明做出了修改。</p>
+<p>并且该js代码的前两行对roles进行了拷贝，避免剔除roles数组导致前端页面显示的改变（不拷贝也不会影响到后端数据）</p>
+<p>成功截图：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805234419261.png" srcset="/img/loading.gif" lazyload alt="image-20230805234419261"></p>
+<h4 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h4><p>果然全部移除之后还是未知错误：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232513933.png" srcset="/img/loading.gif" lazyload alt="image-20230805232513933"></p>
+<p>还是同样的修改方法：</p>
+<p>添加rids判断即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">updateHrRoles</span><span class="hljs-params">(Integer hrid, Integer[] rids)</span> &#123;<br>        hrRoleMapper.deleteByHrid(hrid);<br>        <span class="hljs-keyword">if</span> (rids!=<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> hrRoleMapper.addRole(hrid,rids)==rids.length;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>完成：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232823375.png" srcset="/img/loading.gif" lazyload alt="image-20230805232823375"></p>
 
                 
               </div>
