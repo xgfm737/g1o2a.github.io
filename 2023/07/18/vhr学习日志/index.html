@@ -67,8 +67,11 @@
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805234419261.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232513933.png">
 <meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232823375.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230807011852744.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230808015845119.png">
+<meta property="og:image" content="http://example.com/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230808021005243.png">
 <meta property="article:published_time" content="2023-07-18T15:37:37.000Z">
-<meta property="article:modified_time" content="2023-08-05T15:45:32.192Z">
+<meta property="article:modified_time" content="2023-08-07T18:11:37.925Z">
 <meta property="article:author" content="星光浮梦">
 <meta property="article:tag" content="实践日志">
 <meta name="twitter:card" content="summary_large_image">
@@ -265,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          58k 字
+          59k 字
         
       </span>
     
@@ -276,7 +279,7 @@
         
         
         
-          483 分钟
+          496 分钟
         
       </span>
     
@@ -934,6 +937,26 @@
 
 <p>完成：</p>
 <p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230805232823375.png" srcset="/img/loading.gif" lazyload alt="image-20230805232823375"></p>
+<h3 id="操作员查询"><a href="#操作员查询" class="headerlink" title="操作员查询"></a>操作员查询</h3><p>首先后端给getAllRoles添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getAllHrs&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;HrWithRoles&quot;</span>&gt;</span><br>        SELECT<br>   hr.id,<br>   hr. NAME,<br>   hr.phone,<br>   hr.telephone,<br>   hr.address,<br>   hr.enabled,<br>   hr.username,<br>   hr.userface,<br>   hr.remark,<br>   r.id AS rid,<br>   r. NAME AS rname,<br>   r.nameZh AS rnameZh<br>FROM<br>   hr<br>LEFT JOIN hr_role hrr ON hr.id = hrr.hrid<br>LEFT JOIN role r ON hrr.rid = r.id<br>WHERE<br>   hr.id != #&#123;hrid&#125;<br>   <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;keywords!=null&quot;</span>&gt;</span><br>        and hr.name like concat(&#x27;%&#x27;,#&#123;keywords&#125;,&#x27;%&#x27;)<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>   order by hr.id<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>if判断是否传入keywords来判断是否需要进行一个模糊查询的操作。</p>
+<p>前端搜索按钮绑定对应js代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">doSearch</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initHrs</span>();<br>    &#125;,<br><span class="hljs-title function_">initHrs</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getRequest</span>(<span class="hljs-string">&quot;/system/hr/?keywords=&quot;</span>+<span class="hljs-variable language_">this</span>.<span class="hljs-property">keywords</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>        <span class="hljs-keyword">if</span> (resp)&#123;<br>          <span class="hljs-variable language_">this</span>.<span class="hljs-property">hrs</span> =resp;<br>        &#125;<br>      &#125;)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>修改initHrs方法通过keywords有无决定返回的数据。</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230807011852744.png" srcset="/img/loading.gif" lazyload alt="image-20230807011852744"></p>
+<p>完成。</p>
+<h3 id="操作员删除"><a href="#操作员删除" class="headerlink" title="操作员删除"></a>操作员删除</h3><p>为了方便演示直接在数据库中添加内容。</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230808015845119.png" srcset="/img/loading.gif" lazyload alt="image-20230808015845119"></p>
+<p>然后编写后端接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> RespBean <span class="hljs-title function_">deleteHrById</span><span class="hljs-params">(Integer id)</span>&#123;<br>        <span class="hljs-keyword">if</span> (hrService.deleteHrById(id)==<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-keyword">return</span> RespBean.ok(<span class="hljs-string">&quot;操作角色删除成功！！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> RespBean.error(<span class="hljs-string">&quot;操作角色删除失败！!&quot;</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>并且添加确认messageBox弹框来完成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">deleteHr</span>(<span class="hljs-params">hr</span>)&#123;<br>      <span class="hljs-variable language_">this</span>.$confirm(<span class="hljs-string">&#x27;此操作将永久删除[&#x27;</span>+hr.<span class="hljs-property">name</span>+<span class="hljs-string">&#x27;], 是否继续?&#x27;</span>, <span class="hljs-string">&#x27;提示&#x27;</span>, &#123;<br>        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&#x27;确定&#x27;</span>,<br>        <span class="hljs-attr">cancelButtonText</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,<br>        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;warning&#x27;</span><br>      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">deleteRequest</span>(<span class="hljs-string">&quot;/system/hr/&quot;</span>+hr.<span class="hljs-property">id</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span>=&gt;</span>&#123;<br>          <span class="hljs-keyword">if</span>(resp)&#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initHrs</span>();<br>          &#125;<br>        &#125;)<br>      &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">this</span>.$message(&#123;<br>          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;info&#x27;</span>,<br>          <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;已取消删除&#x27;</span><br>        &#125;);<br>      &#125;);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>完成：</p>
+<p><img src="/2023/07/18/vhr%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/image-20230808021005243.png" srcset="/img/loading.gif" lazyload alt="image-20230808021005243"></p>
 
                 
               </div>
